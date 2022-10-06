@@ -1,0 +1,42 @@
+#Printing off how to write the amount of resources the user wants to see
+y = 0
+x = 0
+z = 0
+def num_checker(str):
+    a = 0
+    b = 0
+    for i in str:
+        if i.isalpha():
+            a = 1
+        if i.isdigit():
+            b = 1
+    return a and b
+
+while y == 0:
+    clinic_raw = input("How many clinics would you like to see? Please answer with a number: \n")
+    if clinic_raw.isalpha():
+        clinic_txt = str(clinic_raw)
+        x = 1
+    if clinic_raw.isdigit():
+        clinic_num = int(clinic_raw) 
+        z = 1
+    if x == 1:
+        print ("I am sorry that isn't reconginzed, please type in numbres such as 1 or 10")
+        x = 0
+    if z == 1:
+        if (clinic_num < 50):
+            spoon = ['x', 'xx', 'xxx']
+            for i in range (clinic_num):
+                print("Clinic:",spoon[i],)
+            break
+        elif (clinic_num > 50):
+            print ("I am sorry that is too large, please select a smaller amount")
+
+
+
+
+#        ,~~.
+#  ,    (  - )>
+#   )`~~'   (
+#  (  .__)   )
+#   `-.____,'
