@@ -1,0 +1,504 @@
+#  See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+# This is 'The Help Desk', welcome and thanks for checking in
+# The point of this project is to assess someone's mental health status
+# Question needed for sexuality/gender/romantic identity
+# Ask what town they are located in (Currently only available in CT)
+# It will ask a series of questions related to traditional mental health issues
+# Afterwards it will send a possible diagnoses* **
+# * Note this can't be 100% accurate
+# ** Screen needed before diagnoses is published saying that this isn't accurate and can be wrong
+# Afterwards send locations for possible therapy, recommendations taken by possible diagnoses
+# Send support group chats for the user to possibly use
+# If LGBTQ+ send trevor project
+# Send local support groups based on the town
+
+# Pre start var's
+exit = 0
+loc = 0
+q = 0
+dp = 0
+foh = 0
+ex = 0
+ms = 0
+an = 0
+ha = 0
+s = 0
+sw = 0
+g = 0
+im = 0
+sh = 0
+suic = 0
+con = 0
+
+
+# Start up screen
+print ("Welcome to the help desk, my name is Moss. Well it was programed to be but that is the same")
+print ("Before we get you started with questions, let's get you checked in")
+name = input(str("What is your name?\n"))
+print (" \nWell, it is nice to meet you " + name + ". I hope that you are comfortable because I have a few questions.")
+
+while exit == 0:
+    user_ok = input(str("Would you mind if I ask you a few questions? (Y/N)\n"))
+    if (user_ok == 'Yes') or (user_ok == 'YES') or (user_ok == 'yES') or (user_ok == 'YeS') or (user_ok == 'YEs') or (user_ok == 'Y') or  (user_ok == 'y'):
+        print ('\nWell, let us start then ' + name + ". It is time for me to ask some questions.")
+        print ('Please answer with yes or no answers')
+        print ("If at any time you would like to stop the screening, or are uncomfortable continuing, type 'exit' \n")
+        x = 1
+        if x == 1:
+            while exit == 0:
+                location = input(str("What country do you live in?\n"))
+                if (location == 'United States') or (location == 'united states') or (location == 'United States of America') or (location == 'united states of america') or (location == 'US') or (location == 'USA') or (location == 'us') or (location == 'usa')or (location == 'Usa'):
+                    location = input(str("What state do you live in?\n"))
+                    if (location == 'Alabama') or (location == 'alabama') or (location == 'Al') or (location == 'AL') or (location == 'al'):
+                        loc = 1
+                    elif (location == 'Alaska') or (location == 'alaska') or (location == 'Ak') or (location == 'AK') or (location == 'ak'):
+                        loc = 2
+                    elif (location == 'Arizona') or (location == 'arizona') or (location == 'Az') or (location == 'AZ') or (location == 'az'):
+                        loc = 3
+                    elif (location == 'Arkansas') or (location == 'arkansas') or (location == 'Ar') or (location == 'AR') or (location == 'ar'):
+                        loc = 4
+                    elif (location == 'California') or (location == 'california') or (location == 'Ca') or (location == 'CA') or (location == 'ca'):
+                        loc = 5
+                    elif (location == 'Connecticut') or (location == 'connecticut') or (location == 'Ct') or (location == 'CT') or (location == 'ct'):
+                        loc = 6
+                    elif (location == 'Delaware') or (location == 'delaware') or (location == 'De') or (location == 'DE') or (location == 'de'):
+                        loc = 7
+                    elif (location == 'Florida') or (location == 'florida') or (location == 'Fl') or (location == 'FL') or (location == 'fl'):
+                        loc = 8
+                    elif (location == 'Georgia') or (location == 'georgia') or (location == 'Ga') or (location == 'GA') or (location == 'ga'):
+                        loc = 9
+                    elif (location == 'Hawaii') or (location == 'hawaii') or (location == 'Hi') or (location == 'HI') or (location == 'hi'):
+                        loc = 10
+                    elif (location == 'Idaho') or (location == 'idaho') or (location == 'Id') or (location == 'ID') or (location == 'id'):
+                        loc = 11
+                    elif (location == 'Illinois') or (location == 'illinois') or (location == 'Il') or (location == 'IL') or (location == 'il'):
+                        loc = 12
+                    elif (location == 'Indiana') or (location == 'indiana') or (location == 'In') or (location == 'IN') or (location == 'in'):
+                        loc = 13
+                    elif (location == 'Iowa') or (location == 'iowa') or (location == 'Ia') or (location == 'IA') or (location == 'ia'):
+                        loc = 14
+                    elif (location == 'Kansas') or (location == 'kansas') or (location == 'Ks') or (location == 'KS') or (location == 'ks'):
+                        loc = 15
+                    elif (location == 'Kentucky') or (location == 'kentucky') or (location == 'Ky') or (location == 'KY') or (location == 'ky'):
+                        loc = 16
+                    elif (location == 'Louisiana') or (location == 'louisiana') or (location == 'La') or (location == 'LA') or (location == 'la'):
+                        loc = 17
+                    elif (location == 'Maine') or (location == 'maine') or (location == 'Me') or (location == 'ME') or (location == 'me'):
+                        loc = 18
+                    elif (location == 'Maryland') or (location == 'maryland') or (location == 'Md') or (location == 'MD') or (location == 'md'):
+                        loc = 19
+                    elif (location == 'Massachusetts') or (location == 'massachusetts') or (location == 'Ma') or (location == 'MA') or (location == 'ma'):
+                        loc = 20
+                    elif (location == 'Michigan') or (location == 'michigan') or (location == 'Mi') or (location == 'MI') or (location == 'mi'):
+                        loc = 21
+                    elif (location == 'Minnesota') or (location == 'minnesota') or (location == 'Mn') or (location == 'MN') or (location == 'mn'):
+                        loc = 22
+                    elif (location == 'Mississippi') or (location == 'mississippi') or (location == 'Ms') or (location == 'MS') or (location == 'ms'):
+                        loc = 23
+                    elif (location == 'Missouri') or (location == 'missouri') or (location == 'Mo') or (location == 'MO') or (location == 'mo'):
+                        loc = 24
+                    elif (location == 'Montana') or (location == 'montana') or (location == 'Mt') or (location == 'MT') or (location == 'mt'):
+                        loc = 25
+                    elif (location == 'Nebraska') or (location == 'nebraska') or (location == 'Ne') or (location == 'NE') or (location == 'ne'):
+                        loc = 26
+                    elif (location == 'Nevada') or (location == 'nevada') or (location == 'Nv') or (location == 'NV') or (location == 'nv'):
+                        loc = 27
+                    elif (location == 'New Hampshire') or (location == 'New hampshire') or (location == 'new Hampshire') or (location == 'new hampshire') or (location == 'Nh') or (location == 'NH') or (location == 'nh'):
+                        loc = 28
+                    elif (location == 'New Jersey') or (location == 'New jersey') or (location == 'new Jersey') or (location == 'new jersey') or (location == 'Nj') or (location == 'NJ') or (location == 'nj'):
+                        loc = 29
+                    elif (location == 'New Mexico') or (location == 'New mexico') or (location == 'new Mexico') or (location == 'new mexico') or (location == 'Nm') or (location == 'NM') or (location == 'nm'):
+                        loc = 30
+                    elif (location == 'New York') or (location == 'New york') or (location == 'new York') or (location == 'new york') or (location == 'Ny') or (location == 'NY') or (location == 'ny'):
+                        loc = 31
+                    elif (location == 'North Carolina') or (location == 'North carolina') or (location == 'north Carolina') or (location == 'north carolina') or (location == 'Nc') or (location == 'NC') or (location == 'nc'):
+                        loc = 32
+                    elif (location == 'North Dakota') or (location == 'North dakota') or (location == 'north Dakota') or (location == 'north dakota') or (location == 'Nd') or (location == 'ND') or (location == 'nd'):
+                        loc = 33
+                    elif (location == 'Ohio') or (location == 'ohio') or (location == 'Oh') or (location == 'OH') or (location == 'oh'):
+                        loc = 34
+                    elif (location == 'Oklahoma') or (location == 'oklahoma') or (location == 'Ok') or (location == 'OK') or (location == 'ok'):
+                        loc = 35
+                    elif (location == 'Oregon') or (location == 'oregon') or (location == 'Or') or (location == 'OR') or (location == 'or'):
+                        loc = 36
+                    elif (location == 'Pennsylvania') or (location == 'pennsylvania') or (location == 'Pa') or (location == 'PA') or (location == 'pa'):
+                        loc = 37
+                    elif (location == 'South Carolina') or (location == 'South carolina') or (location == 'south Carolina') or (location == 'south carolina') or (location == 'Sc') or (location == 'SC') or (location == 'sc'):
+                        loc = 38
+                    elif (location == 'South Dakota') or (location == 'South dakota') or (location == 'south Dakota') or (location == 'south dakota') or (location == 'Sd') or (location == 'SD') or (location == 'sd'):
+                        loc = 39
+                    elif (location == 'Tennessee') or (location == 'tennessee') or (location == 'Tn') or (location == 'TN') or (location == 'tn'):
+                        loc = 40
+                    elif (location == 'Texas') or (location == 'texas') or (location == 'Tx') or (location == 'TX') or (location == 'tx'):
+                        loc = 41
+                    elif (location == 'Utah') or (location == 'utah') or (location == 'Ut') or (location == 'UT') or (location == 'ut'):
+                        loc = 42
+                    elif (location == 'Vermont') or (location == 'vermont') or (location == 'Vt') or (location == 'VT') or (location == 'vt'):
+                        loc = 43
+                    elif (location == 'Virginia') or (location == 'virginia') or (location == 'Va') or (location == 'VA') or (location == 'va'):
+                        loc = 44
+                    elif (location == 'Washington') or (location == 'washington') or (location == 'Wa') or (location == 'WA') or (location == 'wa'):
+                        loc = 45
+                    elif (location == 'West Virginia') or (location == 'West virginia') or (location == 'west Virginia') or (location == 'west virginia') or (location == 'Wv') or (location == 'WV') or (location == 'wv'):
+                        loc = 46
+                    elif (location == 'Wisconsin') or (location == 'wisconsin') or (location == 'Wi') or (location == 'WI') or (location == 'wi'):
+                        loc = 47
+                    elif (location == 'Wyoming') or (location == 'wyoming') or (location == 'Wy') or (location == 'Wy') or (location == 'wy'):
+                        loc = 48
+                    elif (location == 'Colorado') or (location == 'colorado') or (location == 'Co') or (location == 'CO') or (location == 'co'):
+                        loc = 49
+                    elif (location == 'Rhode Island') or (location == 'Rhode island') or (location == 'rhode Island') or (location == 'rhode island') or (location == 'Ri') or (location == 'RI') or (location == 'ri'):
+                        loc = 50
+                    else:
+                        loc = 0
+                elif (location == 'Canada') or (location == 'canada'):
+                    location = input(str("What province do you live in?\n"))
+                    if (location == 'Alberta') or (location == 'alberta') or (location == 'Alta')or (location == 'ALTA') or (location == 'alta') or (location == 'Alb')or (location == 'ALB') or (location == 'alb'):
+                        loc = 51
+                    if (location == 'British Columbia') or (location == 'British columbia') or (location == 'british Columbia') or (location == 'british columbia') or (location == 'Bc') or (location == 'BC') or (location == 'bc') or (location == 'B.C') or (location == 'b.c') or (location == 'B.c'):
+                        loc = 52
+                    if (location == 'Manitoba') or (location == 'manitoba') or (location == 'man') or (location == 'Man') or (location == 'MAN'):
+                        loc = 53
+                    if (location == 'New Brunswick') or (location == 'new Brunswick') or (location == 'new Brunswick') or (location == 'new brunswick') or (location == 'NB') or (location == 'Nb') or (location == 'nb'):
+                        loc = 54
+                    if (location == 'Newfoundland') or (location == 'newfoundland') or (location == 'Labrador')or (location == 'labrador') or (location == 'NL') or (location == 'Nl') or (location == 'nl'):
+                        loc = 55
+                    if (location == 'Nova Scotia') or (location == 'Nova scotia') or (location == 'nova Scotia') or (location == 'nova scotia') or (location == 'NS') or (location == 'Ns')or (location == 'ns'):
+                        loc = 56
+                    if (location == 'Ontario') or (location == 'ontario') or (location == 'Ont') or (location == 'ont') or (location == 'ONT') or (location == 'on')or (location == 'On')or (location == 'ON'):
+                        loc = 57
+                    if (location == 'Prince Edward Island') or (location == 'Prince Edward island') or (location == 'Prince edward island') or (location == 'prince edward island') or (location == 'PEI') or (location == 'Pei') or (location == 'pei'):
+                        loc = 58
+                    if (location == 'Quebec') or (location == 'quebec') or (location == 'QUE') or (location == 'Que') or (location == 'que'):
+                        loc = 59
+                    if (location == 'Saskatchewan') or (location == 'saskatchewan') or (location == 'SASK') or (location == 'Sask') or (location == 'sask'):
+                        loc = 60
+                elif (location == 'Mexico') or (location == 'mexico'):
+                    location = input(str("What state do you live in?\n"))
+                    if (location == 'Aguascalientes') or (location == 'aguascalientes') or (location == 'AGS') or (location == 'Ags') or (location == 'ags'):
+                        loc = 61
+                    if (location == 'Baja California') or (location == 'Baja california') or (location == 'baja California') or (location == 'baja california') or (location == 'BC')or (location == 'Bc')or (location == 'bc'):
+                        loc = 62
+                    if (location == 'Baja California Sur') or (location == 'Baja California sur') or (location == 'Baja california sur') or (location == 'baja california sur') or (location == 'Baja california Sur') or (location == 'baja california Sur') or (location == 'BCS') or (location == 'Bcs') or (location == 'bcs'):
+                        loc = 63
+                    if (location == 'Campeche') or (location == 'campeche') or (location == 'CAMP') or (location == 'Camp') or (location == 'camp'):
+                        loc = 64
+                    if (location == 'Chiapas') or (location == 'chiapas') or (location == 'CHIS') or (location == 'Chis') or (location == 'chis'):
+                        loc = 65
+                    if (location == 'Chihuahua') or (location == 'chihuahua') or (location == 'CHIH') or (location == 'Chih') or (location == 'chih'):
+                        loc = 66
+                    if (location == 'Coahuila') or (location == 'coahuila') or (location == 'COAH') or (location == 'Coah') or (location == 'coah'):
+                        loc = 67
+                    if (location == 'Colima') or (location == 'colima') or (location == 'COL') or (location == 'Col') or (location == 'col'):
+                        loc = 68
+                    if (location == 'Mexico City') or (location == 'Mexico city') or (location == 'mexico city') or (location == 'CDMX') or (location == 'Cdmx') or (location == 'cdmx'):
+                        loc = 69
+                    if (location == 'Durango') or (location == 'durango') or (location == 'DGO') or (location == 'Dgo') or (location == 'dgo'):
+                        loc = 70
+                    if (location == 'Guanajuato') or (location == 'guanajuato') or (location == 'GTO') or (location == 'Gto') or (location == 'gto'):
+                        loc = 71
+                    if (location == 'Guerrero') or (location == 'guerrero') or (location == 'GRO') or (location == 'Gro') or (location == 'gro'):
+                        loc = 72
+                    if (location == 'Jalisco') or (location == 'jalisco') or (location == 'JAL') or (location == 'Jal') or (location == 'jal'):
+                        loc = 73
+                    if (location == 'México') or (location == 'méxico') or (location == 'MÈX') or (location == 'Méx') or (location == 'méx'):
+                        loc = 74
+                    if (location == 'Michoacán') or (location == 'michoacán') or (location == 'MICH') or (location == 'Mich') or (location == 'mich'):
+                        loc = 75
+                    if (location == 'Morelos') or (location == 'morelos') or (location == 'MOR') or (location == 'Mor') or (location == 'mor'):
+                        loc = 76
+                    if (location == 'Nayarit') or (location == 'nayarit') or (location == 'NAY') or (location == 'Nay') or (location == 'nay'):
+                        loc = 77
+                    if (location == 'Nuevo León') or (location == 'Nuevo león') or (location == 'nuevo león') or (location == 'NL') or (location == 'Nl')or (location == 'nl'):
+                        loc = 78
+                    if (location == 'Oaxaca') or (location == 'oaxaca') or (location == 'OAX') or (location == 'Oax') or (location == 'oax'):
+                        loc = 79
+                    if (location == 'Puebla') or (location == 'puebla') or (location == 'PUE') or (location == 'Pue') or (location == 'pue'):
+                        loc = 80
+                    if (location == 'Querétaro') or (location == 'querétaro') or (location == 'QRO') or (location == 'Qro') or (location == 'qro'):
+                        loc = 81
+                    if (location == 'Quintana Roo') or (location == 'Quintana roo') or (location == 'quintana roo') or (location == 'QR') or (location == 'Qr') or (location == 'qr'):
+                        loc = 82
+                    if (location == 'San Luis Potosí') or (location == 'San Luis potosí') or (location == 'San luis Potosí') or (location == 'San luis potosí') or (location == 'san luis potosí')or (location == 'SLP')or (location == 'Slp')or (location == 'slp'):
+                        loc = 83
+                    if (location == 'Sinaloa') or (location == 'sinaloa') or (location == 'SIN') or (location == 'Sin') or (location == 'sin'):
+                        loc = 84
+                    if (location == 'Sonora') or (location == 'sonora') or (location == 'SON') or (location == 'Son') or (location == 'son'):
+                        loc = 85
+                    if (location == 'Tabasco') or (location == 'tabasco') or (location == 'TAB') or (location == 'Tab') or (location == 'tab'):
+                        loc = 86
+                    if (location == 'Tamaulipas') or (location == 'tamaulipas') or (location == 'TAMPS') or (location == 'Tamps') or (location == 'tamps'):
+                        loc = 87
+                    if (location == 'Tlaxcala') or (location == 'tlaxcala') or (location == 'TLAX') or (location == 'Tlax') or (location == 'tlax'):
+                        loc = 88
+                    if (location == 'Veracruz') or (location == 'veracruz') or (location == 'VER') or (location == 'Ver') or (location == 'ver'):
+                        loc = 89
+                    if (location == 'Yucatán') or (location == 'yucatán') or (location == 'YUC') or (location == 'Yuc') or (location == 'yuc'):
+                        loc = 90
+                    if (location == 'Zacatecas') or (location == 'zacatecas') or (location == 'ZAC') or (location == 'Zac') or (location == 'zac'):
+                        loc = 91
+                elif (location == 'Exit') or (location == 'exit'):
+                    exit = 1
+                    print ('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    print("I am sorry, The Help Desk doesn't service this location yet, We only service North America. If you live in North America, you can retype your state/provence by typing 'retype'\n"
+                                       "If you don't live in North America you can continue, however, If you continue, we can't provide location based services.")
+                    reset = str(input('What would you like to do?\n'))
+                    if (reset == 'RETYPE') or (reset == 'Retype') or (reset == 'retype') or (reset == 're-type') or (reset == 'Re-type'):
+                        continue
+                    elif (reset == 'Yes') or (reset == 'YES')  or (reset == 'Continue')  or (reset == 'continue') or (reset == 'yES') or (reset == 'YeS') or (reset == 'YEs') or (reset == 'Y') or (reset == 'y'):
+                        loc = 0
+                    elif (reset == 'No') or (reset == 'NO') or (reset == 'nO') or (reset == 'no') or (reset == 'N') or (reset == 'n'):
+                        print('I am sorry to see you checking out so soon, I hope you come again')
+                        exit = 1
+                        break
+                print("There will be a few more questions, please answer either yes or no.\n")
+                queer = input(str("Do you personally identify with the LGBTQ+ community?\n"))
+                if (queer == 'Yes') or (queer == 'YES') or (queer == 'yES') or (queer == 'YeS') or (queer == 'YEs') or (queer == 'Y') or (queer == 'y'):
+                    q = 3
+                elif (queer == 'No') or (queer == 'NO') or (queer == 'nO') or (queer == 'no') or (queer == 'N') or (queer == 'n'):
+                    q = 2
+                elif (queer == 'Exit') or (queer == 'exit'):
+                    exit = 1
+                    print ('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    q = 1
+                dpress = str(input("Do you feel a loss of happiness from activities that previously brought you joy?\n"))
+                if (dpress == 'Yes') or (dpress == 'YES') or (dpress == 'yES') or (dpress == 'YeS') or (dpress == 'YEs') or (dpress == 'Y') or  (dpress == 'y'):
+                    dp = 3
+                elif (dpress == 'No') or (dpress == 'NO') or (dpress == 'nO') or (dpress == 'no') or (dpress == 'N') or (dpress == 'n'):
+                    dp = 2
+                elif (dpress == 'Exit') or (dpress == 'exit'):
+                    exit = 1
+                    print ('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    dp = 1
+                no_hope = str(input("Do you expierence feelings of hopelessness, whether it be for yourself, others, or the world at large?\n"))
+                if (no_hope == 'Yes') or (no_hope == 'YES') or (no_hope == 'yES') or (no_hope == 'YeS') or (no_hope == 'YEs') or (no_hope == 'Y') or  (no_hope == 'y'):
+                    foh = 3
+                elif (no_hope == 'No') or (no_hope == 'NO') or (no_hope == 'nO') or (no_hope == 'no') or (no_hope == 'N') or (no_hope == 'n'):
+                    foh = 2
+                elif (no_hope == 'Exit') or (no_hope == 'exit'):
+                    exit = 1
+                    print ('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    foh = 1
+                exhaustion = str(input("Are you feeling more tired than normal or having problems staying awake?\n"))
+                if (exhaustion == 'Yes') or (exhaustion == 'YES') or (exhaustion == 'yES') or (exhaustion == 'YeS') or (exhaustion == 'YEs') or (exhaustion == 'Y') or  (exhaustion == 'y'):
+                    ex = 3
+                elif (exhaustion == 'No') or (exhaustion == 'NO') or (exhaustion == 'nO') or (exhaustion == 'no') or (exhaustion == 'N') or (exhaustion == 'n'):
+                    ex = 2
+                elif (exhaustion == 'Exit') or (exhaustion == 'exit'):
+                    exit = 1
+                    print ('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    ex = 1
+                mood_swings = str(input("Do you experience mood swings, such as feeling like you are on top of the world to being extremely depressed?\n"))
+                if (mood_swings == 'Yes') or (mood_swings == 'YES') or (mood_swings == 'yES') or (mood_swings == 'YeS') or (mood_swings == 'YEs') or (mood_swings == 'Y') or  (mood_swings == 'y'):
+                    ms = 3
+                elif (mood_swings == 'No') or (mood_swings == 'NO') or (mood_swings == 'nO') or (mood_swings == 'no') or (mood_swings == 'N') or (mood_swings == 'n'):
+                    ms = 2
+                elif (mood_swings == 'Exit') or (mood_swings == 'exit'):
+                    exit = 1
+                    print ('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    ms = 1
+                anxiety = str(input("Do you feel anxious or nervous about doing things, sometimes to the point where it controls your life?\n"))
+                if (anxiety == 'Yes') or (anxiety == 'YES') or (anxiety == 'yES') or (anxiety == 'YeS') or (anxiety == 'YEs') or (anxiety == 'Y') or  (anxiety == 'y'):
+                    an = 3
+                elif (anxiety == 'No') or (anxiety == 'NO') or (anxiety == 'nO') or (anxiety == 'no') or (anxiety == 'N') or (anxiety == 'n'):
+                    an = 2
+                elif (anxiety == 'Exit') or (anxiety == 'exit'):
+                    exit = 1
+                    print ('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    an = 1
+                hyper_active = str(input("Does it feel hard to sit still without fidgeting?\n"))
+                if (hyper_active == 'Yes') or (hyper_active == 'YES') or (hyper_active == 'yES') or (hyper_active == 'YeS') or (hyper_active == 'YEs') or (hyper_active == 'Y') or  (hyper_active == 'y'):
+                    ha = 3
+                elif (hyper_active == 'No') or (hyper_active == 'NO') or (hyper_active == 'nO') or (hyper_active == 'no') or (hyper_active == 'N') or (hyper_active == 'n'):
+                    ha = 2
+                elif (hyper_active == 'Exit') or (hyper_active == 'exit'):
+                    exit = 1
+                    print ('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    ha = 1
+                sleep = str(input("Is it hard for you to fall asleep or stay asleep?\n"))
+                if (sleep == 'Yes') or (sleep == 'YES') or (sleep == 'yES') or (sleep == 'YeS') or (sleep == 'YEs') or (sleep == 'Y') or  (sleep == 'y'):
+                    s = 3
+                elif (sleep == 'No') or (sleep == 'NO') or (sleep == 'nO') or (sleep == 'no') or (sleep == 'N') or (sleep == 'n'):
+                    s = 2
+                elif (sleep == 'Exit') or (sleep == 'exit'):
+                    exit = 1
+                    print ('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    s = 1
+                social_w = input(str("Are you interacting with your friends and family less then last year?\n"))
+                if (social_w == 'Yes') or (social_w == 'YES') or (social_w == 'yES') or (social_w == 'YeS') or (social_w == 'YEs') or (social_w == 'Y') or  (social_w == 'y'):
+                    sw = 3
+                elif (social_w == 'No') or (social_w == 'NO') or (social_w == 'nO') or (social_w == 'no') or (social_w == 'N') or (social_w == 'n'):
+                    sw = 2
+                elif (social_w == 'Exit') or (social_w == 'exit'):
+                    exit = 1
+                    print ('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    sw = 1
+                guilt = input(str("Do you feel guilty for things that aren't your fault?\n"))
+                if (guilt == 'Yes') or (guilt == 'YES') or (guilt == 'yES') or (guilt == 'YeS') or (guilt == 'YEs') or (guilt == 'Y') or (guilt == 'y'):
+                    g = 3
+                elif (guilt == 'No') or (guilt == 'NO') or (guilt == 'nO') or (guilt == 'no') or (guilt == 'N') or (guilt == 'n'):
+                    g = 2
+                elif (guilt == 'Exit') or (guilt == 'exit'):
+                    g = 1
+                    print('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    g = 1
+                impulsive = input(str("Do you make impulsive desicions without taking into consideration the danger, cost, or other factors?\n"))
+                if (impulsive == 'Yes') or (impulsive == 'YES') or (impulsive == 'yES') or (impulsive == 'YeS') or (impulsive == 'YEs') or (
+                        impulsive == 'Y') or (impulsive == 'y'):
+                    im = 3
+                elif (impulsive == 'No') or (impulsive == 'NO') or (impulsive == 'nO') or (impulsive == 'no') or (impulsive == 'N') or (
+                        impulsive == 'n'):
+                    im = 2
+                elif (impulsive == 'Exit') or (impulsive == 'exit'):
+                    exit = 1
+                    print('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    im = 1
+                self_harm = input(str("Do you have thoughts of self harm or currently harming yourself?\n"))
+                if (self_harm == 'Yes') or (self_harm == 'YES') or (self_harm == 'yES') or (self_harm == 'YeS') or (self_harm == 'YEs') or (
+                        self_harm == 'Y') or (self_harm == 'y'):
+                    sh = 3
+                elif (self_harm == 'No') or (self_harm == 'NO') or (self_harm == 'nO') or (self_harm == 'no') or (self_harm == 'N') or (
+                        self_harm == 'n'):
+                    sh = 2
+                elif (self_harm == 'Exit') or (self_harm == 'exit'):
+                    exit = 1
+                    print('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    sh = 1
+                suic_thought = input(str("Do you have thoughts of suicide or have tried to commit suicide in the past\n"))
+                if (suic_thought == 'Yes') or (suic_thought == 'YES') or (suic_thought == 'yES') or (suic_thought == 'YeS') or (suic_thought == 'YEs') or (
+                        suic_thought == 'Y') or (suic_thought == 'y'):
+                    suic = 3
+                elif (suic_thought == 'No') or (suic_thought == 'NO') or (suic_thought == 'nO') or (suic_thought == 'no') or (suic_thought == 'N') or (
+                        suic_thought == 'n'):
+                    suic = 2
+                elif (suic_thought == 'Exit') or (suic_thought == 'exit'):
+                    exit = 1
+                    print('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    suic = 1
+                concen = input(str("Do you find it hard to concentrate on things, whether it be someone talking to you, or you talking to someone else to someone, or an activity?\n"))
+                if (concen == 'Yes') or (concen == 'YES') or (concen == 'yES') or (concen == 'YeS') or (concen == 'YEs') or (
+                        concen == 'Y') or (concen == 'y'):
+                    con = 3
+                elif (concen == 'No') or (concen == 'NO') or (concen == 'nO') or (concen == 'no') or (concen == 'N') or (
+                        concen == 'n'):
+                    con = 2
+                elif (concen == 'Exit') or (concen == 'exit'):
+                    exit = 1
+                    print('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    con = 1
+                blank = input(str("WIP\n"))
+                if (blank == 'Yes') or (blank == 'YES') or (blank == 'yES') or (blank == 'YeS') or (blank == 'YEs') or (
+                        blank == 'Y') or (blank == 'y'):
+                    blank = 3
+                elif (blank == 'No') or (blank == 'NO') or (blank == 'nO') or (blank == 'no') or (blank == 'N') or (
+                        blank == 'n'):
+                    blank = 2
+                elif (blank == 'Exit') or (blank == 'exit'):
+                    exit = 1
+                    print('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    blank = 1
+                blank = input(str("WIP\n"))
+                if (blank == 'Yes') or (blank == 'YES') or (blank == 'yES') or (blank == 'YeS') or (blank == 'YEs') or (
+                        blank == 'Y') or (blank == 'y'):
+                    blank = 3
+                elif (blank == 'No') or (blank == 'NO') or (blank == 'nO') or (blank == 'no') or (blank == 'N') or (
+                        blank == 'n'):
+                    blank = 2
+                elif (blank == 'Exit') or (blank == 'exit'):
+                    exit = 1
+                    print('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    blank = 1
+                blank = input(str("WIP\n"))
+                if (blank == 'Yes') or (blank == 'YES') or (blank == 'yES') or (blank == 'YeS') or (blank == 'YEs') or (
+                        blank == 'Y') or (blank == 'y'):
+                    blank = 3
+                elif (blank == 'No') or (blank == 'NO') or (blank == 'nO') or (blank == 'no') or (blank == 'N') or (
+                        blank == 'n'):
+                    blank = 2
+                elif (blank == 'Exit') or (blank == 'exit'):
+                    exit = 1
+                    print('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    blank = 1
+                blank = input(str("WIP\n"))
+                if (blank == 'Yes') or (blank == 'YES') or (blank == 'yES') or (blank == 'YeS') or (blank == 'YEs') or (
+                        blank == 'Y') or (blank == 'y'):
+                    blank = 3
+                elif (blank == 'No') or (blank == 'NO') or (blank == 'nO') or (blank == 'no') or (blank == 'N') or (
+                        blank == 'n'):
+                    blank = 2
+                elif (blank == 'Exit') or (blank == 'exit'):
+                    exit = 1
+                    print('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    blank = 1
+                blank = input(str("WIP\n"))
+                if (blank == 'Yes') or (blank == 'YES') or (blank == 'yES') or (blank == 'YeS') or (blank == 'YEs') or (
+                        blank == 'Y') or (blank == 'y'):
+                    blank = 3
+                elif (blank == 'No') or (blank == 'NO') or (blank == 'nO') or (blank == 'no') or (blank == 'N') or (
+                        blank == 'n'):
+                    blank = 2
+                elif (blank == 'Exit') or (blank == 'exit'):
+                    exit = 1
+                    print('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    blank = 1
+                blank = input(str("WIP\n"))
+                if (blank == 'Yes') or (blank == 'YES') or (blank == 'yES') or (blank == 'YeS') or (blank == 'YEs') or (
+                        blank == 'Y') or (blank == 'y'):
+                    blank = 3
+                elif (blank == 'No') or (blank == 'NO') or (blank == 'nO') or (blank == 'no') or (blank == 'N') or (
+                        blank == 'n'):
+                    blank = 2
+                elif (blank == 'Exit') or (blank == 'exit'):
+                    exit = 1
+                    print('I am sorry to see you checking out so soon, I hope you come again')
+                    break
+                else:
+                    blank = 1
+
+    elif (user_ok == 'No') or (user_ok == 'NO') or (user_ok == 'nO') or (user_ok == 'no') or (user_ok == 'N') or (user_ok == 'n'):
+        print ('I am sorry to see you go ' + name + ', I hope you have a lovely day. We hope you stop by the help desk soon')
+        break
+    else:
+        print ("I am so sorry, the help desk doesn't recognize this command. Please input either yes or no")
+        continue
