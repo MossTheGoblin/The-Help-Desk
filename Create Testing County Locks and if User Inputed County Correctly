@@ -1,0 +1,102 @@
+location = 0
+county = 0
+exit = 0
+location_lock = 0
+u_county_ok_num = 0
+u_reinput = 0
+county_spelled = '___'
+while exit == 0:
+    name = str(input("What is your name?\n"))
+    user_ok = input(str("Can I ask you some questions today " + name + "? (Y/N)\n"))
+    if (user_ok == 'Yes') or (user_ok == 'YEs') or (user_ok == 'YeS') or (user_ok == 'yeS') or (user_ok == 'YeS') or (user_ok == 'YES') or (user_ok == 'yes')or (user_ok == 'Y') or  (user_ok == 'y'):
+        print ('\nWell, let us start then ' + name + ". It is time for me to ask some questions.")
+        print ('Please answer with yes or no answers')
+        print ("If at any time you would like to stop the screening, or are uncomfortable continuing, type 'exit' \n")
+        x = 1
+        if x == 1:
+           while location_lock == 0:
+                location = input(str("Do you live in Connecticut?\n"))
+                if (location == 'Yes') or (location == 'YEs') or (location == 'YeS') or (location == 'yeS') or (location == 'YeS') or (location == 'YES') or (location == 'yes') or (location == 'Y') or  (location == 'y'):
+                    
+                    #Checking what county the user is in, user can type skip if they don't know their county
+                    while location_lock == 0:
+                        print("\nList of counties:\n1. Fairfield County\n2. Hartford County\n3. Litchfield County\n4. Middlesex County")
+                        print("5. New Haven County\n6. New London County\n7. Tolland County\n8. Windham County\n9. Skip")
+                        location = input(str("\nWhat county do you live in? If you don't know type '9'\n"))
+                        if location == '9':
+                            county = 10
+                        if location == '1':
+                            county = 1
+                            county_spelled = 'Fairfield'
+                        elif location == '2':
+                            county = 2
+                            county_spelled = 'Hartford'
+                        elif location == '3':
+                            county = 3
+                            county_spelled = 'Litchfield'
+                        elif location == '4':
+                            county = 4
+                            county_spelled = 'Middlesex'
+                        elif location == '5':
+                            county = 5
+                            county_spelled = 'New Haven'
+                        elif location == '6':
+                            county = 6
+                            county_spelled = 'New London'
+                        elif location == '7':
+                            county = 7
+                            county_spelled = 'Tolland'
+                        elif location == '8':
+                            county = 8
+                            county_spelled = 'Windham'
+                        else:
+                            print("I am sorry, that command isn't recconginized, please use numbers and type in your location from the list")
+                            print("If you wish not to answer, please type '9'")
+                        
+                        if (county>0 and county<10):
+                            while u_county_ok_num == 0:
+                                u_county_ok = input("Is this your county "+ county_spelled +"? Please answer with 'Yes' or 'No'\n")
+                                if (u_county_ok == 'Yes') or (u_county_ok == 'YEs') or (u_county_ok == 'YeS') or (u_county_ok == 'yeS') or (u_county_ok == 'YeS') or (u_county_ok == 'YES') or (u_county_ok == 'yes') or (u_county_ok == 'Y') or  (u_county_ok == 'y'):
+                                    print("I am glad to hear that\n")
+                                    location_lock = 1
+                                    u_county_ok_num = 1
+                                elif (u_county_ok == 'No') or (u_county_ok == 'no') or (u_county_ok == 'nO') or (u_county_ok == 'NO') or (u_county_ok == 'N') or (u_county_ok == 'N'):
+                                    while u_reinput == 0:
+                                        u_reinput = input("\nWould you like to re-input your town? Please type either 'Yes','No', or 'Exit'\n")
+                                        if (u_reinput == 'Yes') or (u_reinput == 'YEs') or (u_reinput == 'YeS') or (u_reinput == 'yeS') or (u_reinput == 'YeS') or (u_reinput == 'YES') or (u_reinput == 'yes') or (u_reinput == 'Y') or  (u_reinput == 'y'):
+                                            print("\nThe list will be reprinting now\n")
+                                            location = 0
+                                            county = 0
+                                            u_county_ok_num = 1
+                                            u_reinput = 1
+                                        elif (u_county_ok == 'No') or (u_county_ok == 'no') or (u_county_ok == 'nO') or (u_county_ok == 'NO') or (u_county_ok == 'N') or (u_county_ok == 'N'):
+                                            print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                            exit = 1
+                                            x = 0
+                                            u_county_ok_num = 1
+                                            u_reinput = 1
+                                        elif (u_county_ok == 'Exit') or (u_county_ok == 'EXit') or (u_county_ok == 'EXIt') or (u_county_ok == 'EXIT') or (u_county_ok == 'eXit') or (u_county_ok == 'eXIt') or (u_county_ok == 'eXIT') or (u_county_ok == 'ExIT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exIT') or (u_county_ok == 'exiT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exit'):
+                                            print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                            exit = 1
+                                            x = 0
+                                            u_county_ok_num = 1
+                                            u_reinput = 1
+                                        else:
+                                            print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+                                else:
+                                    print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+
+                        
+                #If user types No/Exit program will end
+                elif (location == 'No') or (location == 'no') or (location == 'nO') or (location == 'NO') or (location == 'N') or (location == 'N'):
+                    print ("\nI am sorry that we don't currently service this location, the only location that we service is Connecticut. \n Please check again soon to see if we service your location")
+                    exit = 1
+                    x = 0
+                elif (location == 'Exit') or (location == 'EXit') or (location == 'EXIt') or (location == 'EXIT') or (location == 'eXit') or (location == 'eXIt') or (location == 'eXIT') or (location == 'ExIT') or (location == 'ExiT') or (location == 'exIT') or (location == 'exiT') or (location == 'ExiT') or (location == 'exit'):
+                    print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                    exit = 1
+                    x = 0
+                else:
+                    print("\nI am sorry, that command isn't recconginized, please either type 'Yes', 'No', or 'Exit'")
+                    print("If you wish not to answer, please type 'Exit' to end the program\n")
+            
