@@ -1,0 +1,2378 @@
+# This is 'The Help Desk', welcome and thanks for checking in
+# The point of this project is to assess someone's mental health status
+# This application isn't able to be used for towns outside of CT
+# It will ask a series of questions related to traditional mental health issues
+
+# Afterwards it will send a possible diagnoses* **
+# * Note this can't be 100% accurate
+# ** Screen needed before diagnoses is published saying that this isn't accurate and can be wrong
+
+# Then it will send locations for possible therapy/rehab/psychiatrists*, recommendations taken by possible diagnoses
+# *Send local support groups based on the town
+# If LGBTQ+ send trevor project
+
+# Pre start var
+pre_start_var = 0
+if pre_start_var == 0:
+    exit = 0 # Exit command, ends program
+    survey_num = [1, 2, 3, 4 ,5] #Survey - list numbers
+    n_length = 0 #Survey - Normal length
+    s_length = 0 #Survey - Short length
+    c = 0 #Forcing user to choose survey option
+    location_lock = 0 #Forces user to choose location
+    town_lock = 0 #Forces user to choose town
+    town_num = 0 # Converts str to int
+    u_county_ok_num = 0 #Asking if user is ok with county
+    u_town_ok_num = 0 #Asking if user is ok with town
+    u_reinput = 0 # Asking if user wants to reinput county
+    county_spelled = '___' #Allowing county to be spelled
+    town_spelled = '___' #Allowing town to be s
+    u_feelings = 0 #Test question for users showing how the system works
+    clinic_lock = 0 
+    psyc_check_lock = 0
+    user_lgbtq_lock = 0
+    substance_use_lock = 0
+    
+#Mental health locks
+mental_health_locks = 0
+if mental_health_locks == 0:
+    u_feelings_lock = 0 #Makes user say how they feel, unless exited
+    u_lgbt_lock = 0 #Makes user say if they identiy with the community or not, unless exited
+    u_hopeless_lock = 0
+    u_sadness_lock = 0
+    u_pointless_lock = 0
+    u_suicidal_lock = 0
+    u_self_hame_lock = 0
+    u_anxiety_lock = 0
+    u_worry_lock = 0
+    u_nervous_lock = 0
+    u_stress_lock = 0
+    u_anxious_lock = 0
+    u_unexpected_lock = 0
+    u_substances_lock = 0
+    u_substance_prevention_lock = 0
+    u_substance_injury_lock = 0
+    u_substance_hopsital_lock = 0
+    u_substance_cope_lock = 0
+    u_dropped_lock = 0
+    u_failure_lock = 0
+
+# Mental health var
+mental_health_score_total = 0
+if mental_health_score_total ==0: 
+    user_identity = 0
+        # 1 question in both lengths to see if in LGBTQ community 
+    depression_total = 0
+        # num of questions - normal length
+        # num of questions - short length
+    suicidal_thoughts_total = 0
+        # num of questions - normal length
+        # num of questions - short length
+    self_harm_thoughts_total = 0
+        # num of questions - normal length
+        # num of questions - short length
+    anxiety_total = 0
+        # num of questions - normal length
+        # num of questions - short length
+    stress_total = 0
+        # num of questions - normal length
+        # num of questions - short length
+    substance_use = 0
+        # num of questions - normal length
+        # num of questions - short length
+
+
+
+# Pre start def 
+def num_checker(str):
+    a = 0
+    b = 0
+    for i in str:
+        if i.isalpha():
+            a = 1
+        if i.isdigit():
+            b = 1
+    return a and b
+
+
+#Welcome msg and getting users name
+print ("Welcome to the help desk, my name is Moss. Well it was programed to be but that is the same")
+print ("Before we get you started with questions, let's get you checked in")
+name = input(str("What is your name?\n"))
+print ("\nWell, it is nice to meet you " + name + ". I hope that you are comfortable because I have a few questions.")
+
+#Exit loop, if user types exit at any time for any question it will exit the program
+while exit == 0:
+    #Asking if user is ok with questions
+    user_ok = input(str("Can I ask you some questions today " + name + "? (Y/N)\n"))
+    
+    #Start program if user is ok
+    if (user_ok == 'Yes') or (user_ok == 'YEs') or (user_ok == 'YeS') or (user_ok == 'yeS') or (user_ok == 'YeS') or (user_ok == 'YES') or (user_ok == 'yes')or (user_ok == 'Y') or  (user_ok == 'y'):
+        print ('\nWell, let us start then ' + name + ". It is time for me to ask some questions.")
+        print ('Please answer with yes or no answers')
+        print ("If at any time you would like to stop the screening, or are uncomfortable continuing, type 'exit' \n")
+        x = 1
+        if x == 1:
+            #Asking if user lives in CT (If user doesn't live in CT program will end)
+            while location_lock == 0:
+                location = input(str("Do you live in Connecticut?\n"))
+                if (location == 'Yes') or (location == 'YEs') or (location == 'YeS') or (location == 'yeS') or (location == 'YeS') or (location == 'YES') or (location == 'yes') or (location == 'Y') or  (location == 'y'):
+                    
+                    #Checking what county the user is in, user can type skip if they don't know their county
+                    while location_lock == 0:
+                        print("\nList of counties:\n1. Fairfield County\n2. Hartford County\n3. Litchfield County\n4. Middlesex County")
+                        print("5. New Haven County\n6. New London County\n7. Tolland County\n8. Windham County\n9. Skip")
+                        location = input(str("\nWhat county do you live in? If you don't know type '9'\n"))
+                        if location == '9':
+                            county = 10
+                            location_lock = 1
+                        elif location == '1':
+                            county = 1
+                            county_spelled = 'Fairfield'
+                        elif location == '2':
+                            county = 2
+                            county_spelled = 'Hartford'
+                        elif location == '3':
+                            county = 3
+                            county_spelled = 'Litchfield'
+                        elif location == '4':
+                            county = 4
+                            county_spelled = 'Middlesex'
+                        elif location == '5':
+                            county = 5
+                            county_spelled = 'New Haven'
+                        elif location == '6':
+                            county = 6
+                            county_spelled = 'New London'
+                        elif location == '7':
+                            county = 7
+                            county_spelled = 'Tolland'
+                        elif location == '8':
+                            county = 8
+                            county_spelled = 'Windham'
+                        else:
+                            print("I am sorry, that command isn't recconginized, please use numbers and type in your location from the list")
+                            print("If you wish not to answer, please type '9'")
+                        
+                        if (county>0 and county<9):
+                            while u_county_ok_num == 0:
+                                u_reinput = 0
+                                u_county_ok = input("Is this your county "+ county_spelled +"? Please answer with 'Yes' or 'No'\n")
+                                if (u_county_ok == 'Yes') or (u_county_ok == 'YEs') or (u_county_ok == 'YeS') or (u_county_ok == 'yeS') or (u_county_ok == 'YeS') or (u_county_ok == 'YES') or (u_county_ok == 'yes') or (u_county_ok == 'Y') or  (u_county_ok == 'y'):
+                                    print("I am glad to hear that\n")
+                                    location_lock = 1
+                                    u_county_ok_num = 1
+                                elif (u_county_ok == 'No') or (u_county_ok == 'no') or (u_county_ok == 'nO') or (u_county_ok == 'NO') or (u_county_ok == 'N') or (u_county_ok == 'N'):
+                                    while u_reinput == 0:
+                                        u_reinput = input("\nWould you like to re-input your town? Please type either 'Yes','No', or 'Exit'\n")
+                                        if (u_reinput == 'Yes') or (u_reinput == 'YEs') or (u_reinput == 'YeS') or (u_reinput == 'yeS') or (u_reinput == 'YeS') or (u_reinput == 'YES') or (u_reinput == 'yes') or (u_reinput == 'Y') or  (u_reinput == 'y'):
+                                            print("\nThe list will be reprinting now\n")
+                                            location = 0
+                                            county = 0
+                                            u_county_ok_num = 1
+                                            u_reinput = 1
+                                        elif (u_county_ok == 'No') or (u_county_ok == 'no') or (u_county_ok == 'nO') or (u_county_ok == 'NO') or (u_county_ok == 'N') or (u_county_ok == 'N'):
+                                            print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                            exit = 1
+                                            x = 0
+                                            u_county_ok_num = 1
+                                            u_reinput = 1
+                                        elif (u_county_ok == 'Exit') or (u_county_ok == 'EXit') or (u_county_ok == 'EXIt') or (u_county_ok == 'EXIT') or (u_county_ok == 'eXit') or (u_county_ok == 'eXIt') or (u_county_ok == 'eXIT') or (u_county_ok == 'ExIT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exIT') or (u_county_ok == 'exiT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exit'):
+                                            print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                            exit = 1
+                                            x = 0
+                                            u_county_ok_num = 1
+                                            u_reinput = 1
+                                        else:
+                                            print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+                                else:
+                                    print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+
+                        
+                #If user types No/Exit program will end
+                elif (location == 'No') or (location == 'no') or (location == 'nO') or (location == 'NO') or (location == 'N') or (location == 'N'):
+                    print ("\nI am sorry that we don't currently service this location, the only location that we service is Connecticut. \n Please check again soon to see if we service your location")
+                    exit = 1
+                    x = 0
+                elif (location == 'Exit') or (location == 'EXit') or (location == 'EXIt') or (location == 'EXIT') or (location == 'eXit') or (location == 'eXIt') or (location == 'eXIT') or (location == 'ExIT') or (location == 'ExiT') or (location == 'exIT') or (location == 'exiT') or (location == 'ExiT') or (location == 'exit'):
+                    print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                    exit = 1
+                    x = 0
+                else:
+                    print("\nI am sorry, that command isn't recconginized, please either type 'Yes', 'No', or 'Exit'")
+                    print("If you wish not to answer, please type 'Exit' to end the program\n")
+            
+                
+            #Asking what town they live in by county. If user types list it will show a list of all towns in the county 
+            if county == 10:
+                while town_lock == 0:
+                    town = str(input("\nWhat town do you live in? If you don't know please type 'Skip' again, however we will not be able to provide location based services.\n"))
+                    if (town == 'Skip') or (town == 'skip') or (town == 'SKIP'):
+                        town_num == 999
+                        town_lock == 1
+                    #Checks every one of the 162 towns in CT, user can type any town so it needs a full list
+                    # Fairfield County towns
+                    elif (town == 'Bethel') or (town == 'bethel') or (town == 'BETHEL'):
+                        town_num = 1
+                        town_spelled = 'Bethel'
+                    elif (town == 'Bridgeport') or (town == 'bridgeport') or (town == 'BRIDGEPORT'):
+                        town_num = 2
+                        town_spelled = 'Bridgeport'
+                    elif (town == 'Brookfield') or (town == 'brookfield') or (town == 'BROOKEFIELD'):
+                        town_num = 3
+                        town_spelled = 'Brookfield'
+                    elif (town == 'Danbury') or (town == 'danbury') or (town == 'DANBURY'):
+                        town_num = 4
+                        town_spelled = 'Danbury'
+                    elif (town == 'Darien') or (town == 'darien') or (town == 'DARIEN'):
+                        town_num = 5
+                        town_spelled = 'Darien'
+                    elif (town == 'Easton') or (town == 'easton') or (town == 'EASTON'):
+                        town_num = 6
+                        town_spelled = 'Easton'
+                    elif (town == 'Fairfield') or (town == 'fairfield') or (town == 'FAIRFIELD'):
+                        town_num = 7
+                        town_spelled = 'Fairfield'
+                    elif (town == 'Greenwich') or (town == 'greenwich') or (town == 'GREENWICH'):
+                        town_num = 8
+                        town_spelled = 'Greenwich'
+                    elif (town == 'Monroe') or (town == 'monroe') or (town == 'MONROE'):
+                        town_num = 9
+                        town_spelled = 'Monroe'
+                    elif (town == 'New Cannan') or (town == 'New cannan') or (town == 'new Cannan') or (town == 'new cannan' ) or (town == 'NEW CANNAN'):
+                        town_num = 10
+                        town_spelled = 'New Cannan'
+                    elif (town == 'New Fairfield') or (town == 'New fairfield') or (town == 'new Fairfield') or (town == 'new fairfield') or (town == 'NEW FAIRFIELD'):
+                        town_num = 11
+                        town_spelled = 'New Fairfield'
+                    elif (town == 'Newtown') or (town == 'newtwon') or (town == 'NEWTOWN'):
+                        town_num = 12
+                        town_spelled = 'Newtown'
+                    elif (town == 'Norwalk') or (town == 'norwalk') or (town == 'NORWALK'):
+                        town_num = 13
+                        town_spelled = 'Norwalk'
+                    elif (town == 'Redding') or (town == 'redding') or (town == 'REDDING'):
+                        town_num = 14
+                        town_spelled = 'Redding'
+                    elif (town == 'Ridgefield') or (town == 'ridgefield') or (town == 'RIDGEFIELD'):
+                        town_num = 15
+                        town_spelled = 'Ridgefield'
+                    elif (town == 'Shelton') or (town == 'shelton') or (town == 'SHELTON'):
+                        town_num = 16
+                        town_spelled = 'Shelton'
+                    elif (town == 'Sherman') or (town == 'sherman') or (town == 'SHERMAN'):
+                        town_num = 17
+                        town_spelled = 'Sherman'
+                    elif (town == 'Stamford') or (town == 'stamford') or (town == 'STAMFORD'):
+                        town_num = 18
+                        town_spelled = 'Stamford'
+                    elif (town == 'Trumbull') or (town == 'trumbull') or (town == 'TRUMBULL'):
+                        town_num = 19
+                        town_spelled = 'Trumbull'
+                    elif (town == 'Weston') or (town == 'weston') or (town == 'WESTON'):
+                        town_num = 20
+                        town_spelled = 'Weston'
+                    elif (town == 'Westport') or (town == 'westport') or (town == 'WESTPORT'):
+                        town_num = 21
+                        town_spelled = 'Westport'
+                    elif (town == 'Wilton') or (town == 'wilton') or (town == 'WILTON'):
+                        town_num = 22
+                        town_spelled = 'Wilton'
+                    #Hartford County Towns
+                    elif (town == 'Avon') or (town == 'avon') or (town == 'AVON'):
+                        town_num = 23
+                        town_spelled = 'Avon'
+                    elif (town == 'Berlin') or (town == 'berlin') or (town == 'BERLIN'):
+                        town_num = 24
+                        town_spelled = 'Berlin'
+                    elif (town == 'Bloomfield') or (town == 'bloomfield') or (town == 'BLOOMFIELD'):
+                        town_num = 25
+                        town_spelled = 'Bloomfield'
+                    elif (town == 'Bristol') or (town == 'bristol') or (town == 'BRISTOl'):
+                        town_num = 26
+                        town_spelled = 'Bristol'
+                    elif (town == 'Burlington') or (town == 'burlington') or (town == 'BURLINGTON'):
+                        town_num = 27
+                        town_spelled = 'Burlington'
+                    elif (town == 'Canton') or (town == 'canton') or (town == 'CANTON'):
+                        town_num = 28
+                        town_spelled = 'Canton'
+                    elif (town == 'East Grandby') or (town == 'East granby') or (town == 'east Granby')  or (town == 'east granby') or (town == 'EAST GRANBY'):
+                        town_num = 29
+                        town_spelled = 'East Granby'
+                    elif (town == 'East Hartford') or (town == 'East hartford') or (town == 'east Hartford') or (town == 'east hartford') or (town == 'EAST HARTFORD'):
+                        town_num = 30
+                        town_spelled = 'East Hartford'
+                    elif (town == 'East Windsor') or (town == 'East windsor') or (town == 'east Windsor') or (town == 'east windsor') or (town == 'EAST WINDSOR'):
+                        town_num = 31
+                        town_spelled = 'East Windsor'
+                    elif (town == 'Endfield') or (town == 'endfield') or (town == 'ENDFIELD'):
+                        town_num = 32
+                        town_spelled = 'Endfield'
+                    elif (town == 'Farmington') or (town == 'farmington') or (town == 'FARMINGTON'):
+                        town_num = 33
+                        town_spelled = 'Farmington'
+                    elif (town == 'Glastonbury') or (town == 'glastonbury') or (town == 'GLASTONBURY'):
+                        town_num = 34
+                        town_spelled = 'Glastonbury'
+                    elif (town == 'Grandby') or (town == 'granby') or (town == 'GRANBY'):
+                        town_num = 35
+                        town_spelled = 'Granby'
+                    elif (town == 'Hartford') or (town == 'hartford') or (town == 'HARTFORD'):
+                        town_num = 36
+                        town_spelled = 'Hartford'
+                    elif (town == 'Hartland') or (town == 'hartland') or (town == 'HARTLAND'):
+                        town_num = 37
+                        town_spelled = 'Hartland'
+                    elif (town == 'Manchester') or (town == 'manchester') or (town == 'MANCHESTER'):
+                        town_num = 38
+                        town_spelled = 'Manchester'
+                    elif (town == 'Marlbrough') or (town == 'marlbrough') or (town == 'MARLBROUGH'):
+                        town_num = 39
+                        town_spelled = 'Marlbrough'
+                    elif (town == 'New Britian') or (town == 'New britian') or (town == 'new Britian') or (town == 'new britian') or (town == 'NEW BRITIAN'):
+                        town_num = 40
+                        town_spelled = 'New Britian'
+                    elif (town == 'Newington') or (town == 'newington') or (town == 'NEWINGTON'):
+                        town_num = 41
+                        town_spelled = 'Newington'
+                    elif (town == 'Plainville') or (town == 'planville') or (town == 'PLANVILLE'):
+                        town_num = 42
+                        town_spelled = 'Plainvill'
+                    elif (town == 'Rocky Hill') or (town == 'Rocky hill') or (town == 'rocky Hill') or (town == 'rocky hill') or (town == 'ROCKY HILL'):
+                        town_num = 43
+                        town_spelled = 'Rocky Hill'
+                    elif (town == 'Simsbury') or (town == 'simsbury') or (town == 'SIMSBURY'):
+                        town_num = 44
+                        town_spelled = 'Simsbury'
+                    elif (town == 'Southington') or (town == 'southington') or (town == 'SOUTHINGTON'):
+                        town_num = 45
+                        town_spelled = 'Southington'
+                    elif (town == 'South Windsor') or (town == 'South windsor') or (town == 'south Windsor') or (town == 'south windsor') or (town == 'SOUTH WINDSOR'):
+                        town_num = 46
+                        town_spelled = 'South Windsor'
+                    elif (town == 'Suffield') or (town == 'suffield') or (town == 'SuFFIELD'):
+                        town_num = 47
+                        town_spelled = 'Suffield'
+                    elif (town == 'West Hartford') or (town == 'West hartford') or (town == 'west Hartford') or (town == 'west hartford') or (town == 'WEST HARTFORD'):
+                        town_num = 48
+                        town_spelled = 'West Hartford'
+                    elif (town == 'Wethersfield') or (town == 'wethersfield') or (town == 'WETHERSFIELD'):
+                        town_num = 49
+                        town_spelled = 'Wethersfield'
+                    elif (town == 'Windsor') or (town == 'windsor') or (town == 'WINDSOR'):
+                        town_num = 50
+                        town_spelled = 'Windsor'
+                    elif (town == 'Windsor Locks') or (town == 'Windsor locks') or (town == 'windsor Locks') or (town == 'windsor locks') or (town == 'WINDSOR LOCKS'):
+                        town_num = 51
+                        town_spelled = 'Windsor Locks'
+                    #Litchfield County Towns
+                    elif (town == 'Barkhamsted') or (town == 'barkhamsted') or (town == 'BARKHAMSTED'):
+                        town_num = 52
+                        town_spelled = 'Barkhamsted'
+                    elif (town == 'Bethlehem') or (town == 'bethleham') or (town == 'BETHLEHAM'):
+                        town_num = 53
+                        town_spelled = 'Bethlehem'
+                    elif (town == 'Bridegwater') or (town == 'bridgewater') or (town == 'BRIDGEWATER'):
+                        town_num = 54
+                        town_spelled = 'Bridgewater'
+                    elif (town == 'Canaan') or (town == 'canaan') or (town == 'CANNAN'):
+                        town_num = 55
+                        town_spelled = 'Canaan'
+                    elif (town == 'Colebrook') or (town == 'colebrook') or (town == 'COLEBROOK'):
+                        town_num = 56
+                        town_spelled = 'Colebrook'
+                    elif (town == 'Cornwall') or (town == 'cornwall') or (town == 'CORNWALL'):
+                        town_num = 56
+                        town_spelled = 'Cornwall'
+                    elif (town == 'Goshen') or (town == 'goshen') or (town == 'GOSHEN'):
+                        town_num = 57
+                        town_spelled = 'Goshen'
+                    elif (town == 'Harwinton') or (town == 'harwinton') or (town == 'HARWINTON'):
+                        town_num = 58
+                        town_spelled = 'Harwington'
+                    elif (town == 'Kent') or (town == 'kent') or (town == 'KENT'):
+                        town_num = 59
+                        town_spelled = 'Kent'
+                    elif (town == 'Litchfield') or (town == 'litchfield') or (town == 'LITCHFIELD'):
+                        town_num = 60
+                        town_spelled = 'Litchfield'
+                    elif (town == 'Morris') or (town == 'morris') or (town == 'MORRIS'):
+                        town_num = 61
+                        town_spelled = 'Morris'
+                    elif (town == 'New Hartford') or (town == 'New hartford') or (town == 'new Hartford') or (town == 'new hartford') or (town == 'NEW HARTFORD'):
+                        town_num = 62
+                        town_spelled = 'New hartford'
+                    elif (town == 'New Milford') or (town == 'New milford') or (town == 'new Milford') or (town == 'new milford') or (town == 'NEW MILFORD'):
+                        town_num = 63
+                        town_spelled = 'New Milford'
+                    elif (town == 'Norfolk') or (town == 'norfolk') or (town == 'NORFOLK'):
+                        town_num = 64
+                        town_spelled = 'Norfolk'
+                    elif (town == 'North Cannan') or (town == 'North cannan') or (town == 'north Cannan') or (town == 'north cannan') or (town == 'NORTH CANNAN'):
+                        town_num = 65
+                        town_spelled = 'North Cannan'
+                    elif (town == 'Plymouth') or (town == 'plymoth') or (town == 'PLYMOTH'):
+                        town_num = 66
+                        town_spelled = 'Plymouth'
+                    elif (town == 'Roxbury') or (town == 'roxbury') or (town == 'ROXBURY'):
+                        town_num = 67
+                        town_spelled = 'Roxbury'
+                    elif (town == 'Sallsbury') or (town == 'sallsbury') or (town == 'SALLSBURY'):
+                        town_num = 68
+                        town_spelled = 'Sallsbury'
+                    elif (town == 'Sharon') or (town == 'sharon') or (town == 'SHARON'):
+                        town_num = 69
+                        town_spelled = 'Sharon'
+                    elif (town == 'Thomanston') or (town == 'thomanston') or (town == 'THOMANSTON'):
+                        town_num = 70
+                        town_spelled = 'Thomanston'
+                    elif (town == 'Torrington') or (town == 'torrington') or (town == 'TORRINGTON'):
+                        town_num = 71
+                        town_spelled = 'Torrington'
+                    elif (town == 'Warren') or (town == 'warren') or (town == 'WARREN'):
+                        town_num = 72
+                        town_spelled = 'Warren'
+                    elif (town == 'Washington') or (town == 'washington') or (town == 'WASINGTON'):
+                        town_num = 73
+                        town_spelled = 'Washington'
+                    elif (town == 'Watertown') or (town == 'watertown') or (town == 'WATERTOWN'):
+                        town_num = 74
+                        town_spelled = 'Watertown'
+                    elif (town == 'Winchester') or (town == 'winchester') or (town == 'WINCHESTER'):
+                        town_num = 75
+                        town_spelled = 'Winchester'
+                    elif (town == 'Woodbury') or (town == 'woodbury') or (town == 'WOODBURY'):
+                        town_num = 76
+                        town_spelled = 'Woodbury'
+                    #Middlesex County Towns
+                    elif (town == 'Chester') or (town == 'chester') or (town == 'CHESTER'):
+                        town_num = 77
+                        town_spelled = 'Chester'
+                    elif (town == 'Clinton') or (town == 'clinton') or (town == 'CLINTON'):
+                        town_num = 78
+                        town_spelled = 'Clinton'
+                    elif (town == 'Cromwell') or (town == 'cromwell') or (town == 'CROMWELL'):
+                        town_num = 79
+                        town_spelled = 'Cromwell'
+                    elif (town == 'Deep River') or (town == 'Deep river') or (town == 'deep River') or (town == 'deep river') or (town == 'DEEP RIVER'):
+                        town_num = 80
+                        town_spelled = 'Deep River'
+                    elif (town == 'Durham') or (town == 'durham') or (town == 'DURHAM'):
+                        town_num = 81
+                        town_spelled = 'Durham'
+                    elif (town == 'East Haddam') or (town == 'East haddam') or (town == 'east Haddam') or (town == 'east haddam') or (town == 'EAST HADDAM'):
+                        town_num = 82
+                        town_spelled = 'East Haddam'
+                    elif (town == 'East Hampton') or (town == 'East hampton') or (town == 'east Hampton') or (town == 'east hampton') or (town == 'EAST HAMPTON'):
+                        town_num = 83
+                        town_spelled = 'East Hampton'
+                    elif (town == 'Essex') or (town == 'essex') or (town == 'ESSEX'):
+                        town_num = 84
+                        town_spelled = 'Essex'
+                    elif (town == 'Haddam') or (town == 'haddam') or (town == 'HADDAM'):
+                        town_num = 85
+                        town_spelled = 'Haddam'
+                    elif (town == 'Killingworth') or (town == 'killingworth') or (town == 'KILLINGWORTH'):
+                        town_num = 86
+                        town_spelled ='Killingworth'
+                    elif (town == 'Middlefield') or (town == 'middlefield') or (town == 'MIDDLEFIELD'):
+                        town_num = 87
+                        town_spelled = 'Middlefield'
+                    elif (town == 'Middletown') or (town == 'middletown') or (town == 'MIDDLETOWN'):
+                        town_num = 88
+                        town_spelled = 'Middletown'
+                    elif (town == 'Old Saybrook') or (town == 'Old saybrook') or (town == 'old Saybrook') or (town == 'old saybrook') or (town == 'OLD SAYBROOK'):
+                        town_num = 89
+                        town_spelled = 'Old Saybrook'
+                    elif (town == 'Portland') or (town == 'portland') or (town == 'PORTLAND'):
+                        town_num = 90
+                        town_spelled = 'Portland'
+                    elif (town == 'Westbrook') or (town == 'westbrook') or (town == 'WESTBROOKE'):
+                        town_num = 91
+                        town_spelled = 'Westbrook'
+                    #New Haven Conuty Towns
+                    elif (town == 'Ansonia') or (town == 'ansonia') or (town == 'ANSONIA'):
+                        town_num = 92
+                        town_spelled = 'Ansonia'
+                    elif (town == 'Beacon Falls') or (town == 'Beacon falls') or (town == 'beacon Falls') or (town == 'beacon falls') or (town == 'BEACON FALLS'):
+                        town_num = 93
+                        town_spelled = 'Beacon Falls'
+                    elif (town == 'Bethany') or (town == 'bethany') or (town == 'BEATHNY'):
+                        town_num = 94
+                        town_spelled = 'Bethany'
+                    elif (town == 'Branford') or (town == 'branford') or (town == 'BRANFORD'):
+                        town_num = 95
+                        town_spelled = 'Branford'
+                    elif (town == 'Cheshire') or (town == 'cheshire') or (town == 'CHESHIRE'):
+                        town_num = 96
+                        town_spelled = 'Cheshire'
+                    elif (town == 'Derby') or (town == 'derby') or (town == 'DERBY'):
+                        town_num = 97
+                        town_spelled = 'Derby'
+                    elif (town == 'East Haven') or (town == 'East haven') or (town == 'east Haven') or (town == 'east haven') or (town == 'EAST HAVEN'):
+                        town_num = 98
+                        town_spelled = 'East Haven'
+                    elif (town == 'Guliford') or (town == 'guliford') or (town == 'GULIFORD'):
+                        town_num = 99
+                        town_spelled = 'Guliford'
+                    elif (town == 'Hamden') or (town == 'hamden') or (town == 'HAMDEN'):
+                        town_num = 100
+                        town_spelled = 'Hamden'
+                    elif (town == 'Madison') or (town == 'madison') or (town == 'MADISON'):
+                        town_num = 101
+                        town_spelled = 'Madison'
+                    elif (town == 'Meriden') or (town == 'meriden') or (town == 'MERIDEN'):
+                        town_num = 102
+                        town_spelled = 'Meriden'
+                    elif (town == 'Middlebury') or (town == 'middlebury') or (town == 'MIDDLEBURY'):
+                        town_num = 103
+                        town_spelled = 'Middlebury'
+                    elif (town == 'Milford') or (town == 'milford') or (town == 'MILFORD'):
+                        town_num = 104
+                        town_spelled = 'Milford'
+                    elif (town == 'Naugatuck') or (town == 'naugatuck') or (town == 'NAUGATUCK'):
+                        town_num = 105
+                        town_spelled = 'Naugatuck'
+                    elif (town == 'New Haven') or (town == 'New haven') or (town == 'new Haven') or (town == 'new haven') or (town == 'NEW HAVEN'):
+                        town_num = 106
+                        town_spelled = 'New Haven'
+                    elif (town == 'North Branford') or (town == 'North branford') or (town == 'north Branford') or (town == 'north branford') or (town == 'NORTH BRANFORD'):
+                        town_num = 107
+                        town_spelled = 'North Branford'
+                    elif (town == 'North Haven') or (town == 'North haven') or (town == 'north haven') or (town == 'north haven') or (town == 'NORTH HAVEN'):
+                        town_num = 108
+                        town_spelled = 'North Haven'
+                    elif (town == 'Southbury') or (town == 'southbury') or (town == 'SOUTHBURY'):
+                        town_num = 109
+                        town_spelled = 'Southbury'
+                    elif (town == 'Wallingford') or (town == 'wallingford') or (town == 'WALLINGFORD'):
+                        town_num = 110
+                        town_spelled = 'Wallingford'
+                    elif (town == 'Waterbury') or (town == 'waterbury') or (town == 'WATERBURY'):
+                        town_num = 111
+                        town_spelled = 'Waterbury'
+                    elif (town == 'West Haven') or (town == 'West haven') or (town == 'west Haven') or (town == 'west haven') or (town == 'WEST HAVEN'):
+                        town_num = 112
+                        town_spelled = 'West Haven'
+                    elif (town == 'Wolocott') or (town == 'wolocott') or (town == 'WOLOCOTT'):
+                        town_num = 113
+                        town_spelled = 'Wolocott'
+                    elif (town == 'Woodbridge') or (town == 'woodbridge') or (town == 'WOODBRIDGE'):
+                        town_num = 114
+                        town_spelled = 'Woodbridge'
+                    #New London County Towns
+                    elif (town == 'Bozrah') or (town == 'bozrah') or (town == 'BOZRAH'):
+                        town_num = 115
+                        town_spelled = 'Bozrah'
+                    elif (town == 'Colchester') or (town == 'colchester') or (town == 'COLCHESTER'):
+                        town_num = 116
+                        town_spelled = 'Colchester'
+                    elif (town == 'East Lyme') or (town == 'East lyme') or (town == 'east Lyme') or (town == 'east lyme') or (town == 'EAST LYME'):
+                        town_num = 117
+                        town_spelled = 'East Lyme'
+                    elif (town == 'Franklin') or (town == 'franklin') or (town == 'FRANKLIN'):
+                        town_num = 118
+                        town_spelled = 'Franklin'
+                    elif (town == 'Griswold') or (town == 'griswold') or (town == 'GRISWOLD'):
+                        town_num = 119
+                        town_spelled = 'Griswold'
+                    elif (town == 'Groton') or (town == 'groton') or (town == 'GROTON'):
+                        town_num = 120
+                        town_spelled = 'Groton'
+                    elif (town == 'Lebanon') or (town == 'lebanon') or (town == 'LEBANON'):
+                        town_num = 121
+                        town_spelled = 'Lebanon'
+                    elif (town == 'Ledyard') or (town == 'ledyard') or (town == 'LEDYARD'):
+                        town_num = 122
+                        town_spelled = 'Ledyard'
+                    elif (town == 'Lisbon') or (town == 'lisbon') or (town == 'LISBON'):
+                        town_num = 123
+                        town_spelled = 'Lisbon'
+                    elif (town == 'Lyme') or (town == 'lyme') or (town == 'LYME'):
+                        town_num = 124
+                        town_spelled = 'Lyme'
+                    elif (town == 'Montville') or (town == 'montville') or (town == 'MONTVILLE'):
+                        town_num = 125
+                        town_spelled = 'Montville'
+                    elif (town == 'New London') or (town == 'New london') or (town == 'new London') or (town == 'new london') or (town == 'NEW LONDON'):
+                        town_num = 126
+                        town_spelled = 'New London'
+                    elif (town == 'North Storington') or (town == 'North storington') or (town == 'north Storington') or (town == 'north storington') or (town == 'NORTH STORINGTON'):
+                        town_num = 127
+                        town_spelled = 'North Storington'
+                    elif (town == 'Norwich') or (town == 'norwich') or (town == 'NORWICH'):
+                        town_num = 128
+                        town_spelled = 'Norwich'
+                    elif (town == 'Old Lyme') or (town == 'Old lyme') or (town == 'old Lyme') or (town == 'old lyme') or (town == 'OLD LYME'):
+                        town_num = 129
+                        town_spelled = 'Old Lyme'
+                    elif (town == 'Preston') or (town == 'preston') or (town == 'PRESTON'):
+                        town_num = 130
+                        town_spelled = 'Preston'
+                    elif (town == 'Salem') or (town == 'salem') or (town == 'SALEM'):
+                        town_num = 131
+                        town_spelled = 'Salem'
+                    elif (town == 'Sprague') or (town == 'sprague') or (town == 'SPRAGUE'):
+                        town_num = 132
+                        town_spelled = 'Sprague'
+                    elif (town == 'Stonington') or (town == 'stonington') or (town == 'STONINGTON'):
+                        town_num = 133
+                        town_spelled = 'Stonington'
+                    elif (town == 'Voluntown') or (town == 'voluntown') or (town == 'VOLUNTOWN'):
+                        town_num = 134
+                        town_spelled = 'Voluntown'
+                    elif (town == 'Waterford') or (town == 'waterford') or (town == 'WATERFORD'):
+                        town_num = 135
+                        town_spelled = 'Waterford'
+                    #Tolland County Towns
+                    elif (town == 'Andover') or (town == 'andover') or (town == 'ANDOVER'):
+                        town_num = 136
+                        town_spelled = 'Andover'
+                    elif (town == 'Bolton') or (town == 'bolton') or (town == 'BOLTON'):
+                        town_num = 137
+                        town_spelled = 'Bolton'
+                    elif (town == 'Coventry') or (town == 'coventry') or (town == 'COVENTRY'):
+                        town_num = 138
+                        town_spelled = 'Coventry'
+                    elif (town == 'Elington') or (town == 'elington') or (town == 'ELINGTON'):
+                        town_num = 139
+                        town_spelled = 'Elington'
+                    elif (town == 'Hebron') or (town == 'hebron') or (town == 'HEBRON'):
+                        town_num = 140
+                        town_spelled = 'Hebron'
+                    elif (town == 'Mansfield') or (town == 'mansfield') or (town == 'MANSFIELD'):
+                        town_num = 141
+                        town_spelled = 'Mansfield'
+                    elif (town == 'Somers') or (town == 'somers') or (town == 'SOMERS'):
+                        town_num = 142
+                        town_spelled = 'Somers'
+                    elif (town == 'Strafford') or (town == 'strafford') or (town == 'STRAFFORD'):
+                        town_num = 143
+                        town_spelled = "Strafford"
+                    elif (town == 'Tolland') or (town == 'tolland') or (town == 'TOLLAND'):
+                        town_num = 144
+                        town_spelled = 'Tolland'
+                    elif (town == 'Union') or (town == 'union') or (town == 'UNION'):
+                        town_num = 145
+                        town_spelled = 'Union'
+                    elif (town == 'Vernon') or (town == 'vernon') or (town == 'VERNON'):
+                        town_num = 146
+                        town_spelled = 'Vernon'
+                    elif (town == 'Willington') or (town == 'willington') or (town == 'willington'):
+                        town_num = 147
+                        town_spelled = 'Willington'
+                    #Windham County Town List
+                    elif (town == 'Ashford') or (town == 'ashford') or (town == 'ASHFORD'):
+                        town_num = 148
+                        town_spelled = 'Ashford'
+                    elif (town == 'Brooklyn') or (town == 'brooklyn') or (town == 'BROOKLYN'):
+                        town_num = 149
+                        town_spelled = 'Brooklyn'
+                    elif (town == 'Canterbury') or (town == 'canterbury') or (town == 'CANTERBURY'):
+                        town_num = 150
+                        town_spelled = 'Canterbury'
+                    elif (town == 'Chaplin') or (town == 'chaplin') or (town == 'CHAPLIN'):
+                        town_num = 151
+                        town_spelled = 'Chaplin'
+                    elif (town == 'Eastford') or (town == 'eastford') or (town == 'EASTFORD'):
+                        town_num = 152
+                        town_spelled = 'Eastford'
+                    elif (town == 'Hampton') or (town == 'hampton') or (town == 'HAMPTON'):
+                        town_num = 153
+                        town_spelled = 'Hampton'
+                    elif (town == 'Killingly') or (town == 'killingly') or (town == 'KILLINGLY'):
+                        town_num = 154
+                        town_spelled = 'Killingly'
+                    elif (town == 'Plainfield') or (town == 'plainfield') or (town == 'PLAINFIELD'):
+                        town_num = 155
+                        town_spelled = 'Plainfield'
+                    elif (town == 'Pomfret') or (town == 'pomfret') or (town == 'POMFRET'):
+                        town_num = 156
+                        town_spelled = 'Pomfret'
+                    elif (town == 'Putnam') or (town == 'putnam') or (town == 'PUTNAM'):
+                        town_num = 157
+                        town_spelled = 'Putnam'
+                    elif (town == 'Scotland') or (town == 'scotland') or (town == 'SCOTLNAD'):
+                        town_num = 158
+                        town_spelled = 'Scotland'
+                    elif (town == 'Sterling') or (town == 'sterling') or (town == 'STERLING'):
+                        town_num = 159
+                        town_spelled = 'Steerling'
+                    elif (town == 'Thompson') or (town == 'thompson') or (town == 'THOMPSON'):
+                        town_num = 160
+                        town_spelled = 'Thompson'
+                    elif (town == 'Windham') or (town == 'windham') or (town == 'WINDHAM'):
+                        town_num = 161
+                        town_spelled = 'Windham'
+                    elif (town == 'Woodstock') or (town == 'woodstock') or (town == 'WOODSTOCK'):
+                        town_num = 162
+                        town_spelled = 'Woodstock'
+                    else:
+                        print("I am sorry, that command isn't recconginized, please type the name of your town")
+                        print("If you wish not to answer, please type 'Skip'")
+                        
+                    if (town_num>0 and town_num<163):
+                        while u_town_ok_num == 0:
+                            u_reinput = 0
+                            u_town_ok = input("Is this your town "+ town_spelled +"? Please answer with 'Yes' or 'No'\n")
+                            if (u_town_ok == 'Yes') or (u_town_ok == 'YEs') or (u_town_ok == 'YeS') or (u_town_ok == 'yeS') or (u_town_ok == 'YeS') or (u_town_ok == 'YES') or (u_town_ok == 'yes') or (u_town_ok == 'Y') or  (u_town_ok == 'y'):
+                                print("I am glad to hear that\n")
+                                town_lock = 1
+                                u_town_ok_num = 1
+                            elif (u_town_ok == 'No') or (u_town_ok == 'no') or (u_town_ok == 'nO') or (u_town_ok == 'NO') or (u_town_ok == 'N') or (u_town_ok == 'N'):
+                                while u_reinput == 0:
+                                    u_reinput = input("\nWould you like to re-input your town? Please type either 'Yes','No', or 'Exit'\n")
+                                    if (u_reinput == 'Yes') or (u_reinput == 'YEs') or (u_reinput == 'YeS') or (u_reinput == 'yeS') or (u_reinput == 'YeS') or (u_reinput == 'YES') or (u_reinput == 'yes') or (u_reinput == 'Y') or  (u_reinput == 'y'):
+                                        print("\nPlease enter your town\n")
+                                        town = 0
+                                        town_num = 0
+                                        county = 0
+                                        town_spelled = '___'
+                                        u_town_ok = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'No') or (u_county_ok == 'no') or (u_county_ok == 'nO') or (u_county_ok == 'NO') or (u_county_ok == 'N') or (u_county_ok == 'N'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'Exit') or (u_county_ok == 'EXit') or (u_county_ok == 'EXIt') or (u_county_ok == 'EXIT') or (u_county_ok == 'eXit') or (u_county_ok == 'eXIt') or (u_county_ok == 'eXIT') or (u_county_ok == 'ExIT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exIT') or (u_county_ok == 'exiT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exit'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    else:
+                                        print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+                            else:
+                                print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+            if county == 1:
+                while town_lock == 0:
+                    town = str(input("\nWhat town in Fairfield do you live in? To list towns type list\n"))
+                    if (town == 'List') or (town == 'LIST') or (town == 'list'):
+                        print ("1. Bethel\n2. Bridgeport\n3. Brookfield\n4. Danbury\n5. Darien")
+                        print ("6. Easton\n7. Fairfield\n8. Greenwich\n9. Monroe\n10. New Canaan")
+                        print("11. New Fairfield\n12. Newtown\n13. Norwalk\n14. Redding\n15. Ridgefield")
+                        print("16. Shelton\n17. Sherman\n18. Stamford\n19. Stratford\n20. Trumbull")
+                        print ("21. Weston\n22. Westport\n 23. Wilton")
+                    elif (town == 'Bethel') or (town == 'bethel') or (town == 'BETHEL'):
+                        town_num = 1
+                        town_spelled = 'Bethel'
+                    elif (town == 'Bridgeport') or (town == 'bridgeport') or (town == 'BRIDGEPORT'):
+                        town_num = 2
+                        town_spelled = 'Bridgeport'
+                    elif (town == 'Brookfield') or (town == 'brookfield') or (town == 'BROOKEFIELD'):
+                        town_num = 3
+                        town_spelled = 'Brookfield'
+                    elif (town == 'Danbury') or (town == 'danbury') or (town == 'DANBURY'):
+                        town_num = 4
+                        town_spelled = 'Danbury'
+                    elif (town == 'Darien') or (town == 'darien') or (town == 'DARIEN'):
+                        town_num = 5
+                        town_spelled = 'Darien'
+                    elif (town == 'Easton') or (town == 'easton') or (town == 'EASTON'):
+                        town_num = 6
+                        town_spelled = 'Easton'
+                    elif (town == 'Fairfield') or (town == 'fairfield') or (town == 'FAIRFIELD'):
+                        town_num = 7
+                        town_spelled = 'Fairfield'
+                    elif (town == 'Greenwich') or (town == 'greenwich') or (town == 'GREENWICH'):
+                        town_num = 8
+                        town_spelled = 'Greenwich'
+                    elif (town == 'Monroe') or (town == 'monroe') or (town == 'MONROE'):
+                        town_num = 9
+                        town_spelled = 'Monroe'
+                    elif (town == 'New Cannan') or (town == 'New cannan') or (town == 'new Cannan') or (town == 'new cannan' ) or (town == 'NEW CANNAN'):
+                        town_num = 10
+                        town_spelled = 'New Cannan'
+                    elif (town == 'New Fairfield') or (town == 'New fairfield') or (town == 'new Fairfield') or (town == 'new fairfield') or (town == 'NEW FAIRFIELD'):
+                        town_num = 11
+                        town_spelled = 'New Fairfield'
+                    elif (town == 'Newtown') or (town == 'newtwon') or (town == 'NEWTOWN'):
+                        town_num = 12
+                        town_spelled = 'Newtown'
+                    elif (town == 'Norwalk') or (town == 'norwalk') or (town == 'NORWALK'):
+                        town_num = 13
+                        town_spelled = 'Norwalk'
+                    elif (town == 'Redding') or (town == 'redding') or (town == 'REDDING'):
+                        town_num = 14
+                        town_spelled = 'Redding'
+                    elif (town == 'Ridgefield') or (town == 'ridgefield') or (town == 'RIDGEFIELD'):
+                        town_num = 15
+                        town_spelled = 'Ridgefield'
+                    elif (town == 'Shelton') or (town == 'shelton') or (town == 'SHELTON'):
+                        town_num = 16
+                        town_spelled = 'Shelton'
+                    elif (town == 'Sherman') or (town == 'sherman') or (town == 'SHERMAN'):
+                        town_num = 17
+                        town_spelled = 'Sherman'
+                    elif (town == 'Stamford') or (town == 'stamford') or (town == 'STAMFORD'):
+                        town_num = 18
+                        town_spelled = 'Stamford'
+                    elif (town == 'Trumbull') or (town == 'trumbull') or (town == 'TRUMBULL'):
+                        town_num = 19
+                        town_spelled = 'Trumbull'
+                    elif (town == 'Weston') or (town == 'weston') or (town == 'WESTON'):
+                        town_num = 20
+                        town_spelled = 'Weston'
+                    elif (town == 'Westport') or (town == 'westport') or (town == 'WESTPORT'):
+                        town_num = 21
+                        town_spelled = 'Westport'
+                    elif (town == 'Wilton') or (town == 'wilton') or (town == 'WILTON'):
+                        town_num = 22
+                        town_spelled = 'Wilton'
+                    elif (town == 'Exit') or (town == 'EXit') or (user_ok == 'EXIt') or (user_ok == 'EXIT') or (user_ok == 'eXit') or (user_ok == 'eXIt') or (user_ok == 'eXIT') or (user_ok == 'ExIT') or (user_ok == 'ExiT') or (user_ok == 'exIT') or (user_ok == 'exiT') or (user_ok == 'ExiT') or (user_ok == 'exit'):
+                        print ("I am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        x = 0
+                    else:
+                        print ("I am sorry that command isn't recconginized, please write your town from the list above. If you don't know how to spell your town type list")
+                    if (town_num>0 and town_num<163):
+                        while u_town_ok_num == 0:
+                            u_reinput = 0
+                            u_town_ok = input("Is this your town "+ town_spelled +"? Please answer with 'Yes' or 'No'\n")
+                            if (u_town_ok == 'Yes') or (u_town_ok == 'YEs') or (u_town_ok == 'YeS') or (u_town_ok == 'yeS') or (u_town_ok == 'YeS') or (u_town_ok == 'YES') or (u_town_ok == 'yes') or (u_town_ok == 'Y') or  (u_town_ok == 'y'):
+                                print("I am glad to hear that\n")
+                                town_lock = 1
+                                u_town_ok_num = 1
+                            elif (u_town_ok == 'No') or (u_town_ok == 'no') or (u_town_ok == 'nO') or (u_town_ok == 'NO') or (u_town_ok == 'N') or (u_town_ok == 'N'):
+                                while u_reinput == 0:
+                                    u_reinput = input("\nWould you like to re-input your town? Please type either 'Yes','No', or 'Exit'\n")
+                                    if (u_reinput == 'Yes') or (u_reinput == 'YEs') or (u_reinput == 'YeS') or (u_reinput == 'yeS') or (u_reinput == 'YeS') or (u_reinput == 'YES') or (u_reinput == 'yes') or (u_reinput == 'Y') or  (u_reinput == 'y'):
+                                        print("\nPlease enter your town\n")
+                                        town = 0
+                                        town_num = 0
+                                        county = 0
+                                        town_spelled = '___'
+                                        u_town_ok = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'No') or (u_county_ok == 'no') or (u_county_ok == 'nO') or (u_county_ok == 'NO') or (u_county_ok == 'N') or (u_county_ok == 'N'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'Exit') or (u_county_ok == 'EXit') or (u_county_ok == 'EXIt') or (u_county_ok == 'EXIT') or (u_county_ok == 'eXit') or (u_county_ok == 'eXIt') or (u_county_ok == 'eXIT') or (u_county_ok == 'ExIT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exIT') or (u_county_ok == 'exiT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exit'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    else:
+                                        print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+                            else:
+                                print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+            if county == 2:
+                while town_lock == 0:
+                    town = str(input("\nWhat town in Hartford do you live in? To list towns type list\n"))
+                    if (town == 'List') or (town == 'LIST') or (town == 'list'):
+                        print ("1. Avon\n2. Berlin\n3. Bloomfield\n4. Briston\n5. Burlington")
+                        print("6. Canton\n7. East Granby\n8. East Hartford\n9. East Windsor\n10. Enfield")
+                        print("11. Farmington\n12. Glastonbury\n13. Granby\n14. Hartford\n15. Hartland")
+                        print("16. Manchester\n17. Marlborough\n18. Naw Britian\n19. Newington\n20. Plainville")
+                        print("21. Rocky Hill\n22. Simsbury\n23. Southington\n24. South Windosr\n25. Suffield")
+                        print("26. West Hartford\n27. Wethersfield\n28. Windsor\n29. Windosr Locks")
+                    elif (town == 'Avon') or (town == 'avon') or (town == 'AVON'):
+                        town_num = 23
+                        town_spelled = 'Avon'
+                    elif (town == 'Berlin') or (town == 'berlin') or (town == 'BERLIN'):
+                        town_num = 24
+                        town_spelled = 'Berlin'
+                    elif (town == 'Bloomfield') or (town == 'bloomfield') or (town == 'BLOOMFIELD'):
+                        town_num = 25
+                        town_spelled = 'Bloomfield'
+                    elif (town == 'Bristol') or (town == 'bristol') or (town == 'BRISTOl'):
+                        town_num = 26
+                        town_spelled = 'Bristol'
+                    elif (town == 'Burlington') or (town == 'burlington') or (town == 'BURLINGTON'):
+                        town_num = 27
+                        town_spelled = 'Burlington'
+                    elif (town == 'Canton') or (town == 'canton') or (town == 'CANTON'):
+                        town_num = 28
+                        town_spelled = 'Canton'
+                    elif (town == 'East Grandby') or (town == 'East granby') or (town == 'east Granby')  or (town == 'east granby') or (town == 'EAST GRANBY'):
+                        town_num = 29
+                        town_spelled = 'East Granby'
+                    elif (town == 'East Hartford') or (town == 'East hartford') or (town == 'east Hartford') or (town == 'east hartford') or (town == 'EAST HARTFORD'):
+                        town_num = 30
+                        town_spelled = 'East Hartford'
+                    elif (town == 'East Windsor') or (town == 'East windsor') or (town == 'east Windsor') or (town == 'east windsor') or (town == 'EAST WINDSOR'):
+                        town_num = 31
+                        town_spelled = 'East Windsor'
+                    elif (town == 'Endfield') or (town == 'endfield') or (town == 'ENDFIELD'):
+                        town_num = 32
+                        town_spelled = 'Endfield'
+                    elif (town == 'Farmington') or (town == 'farmington') or (town == 'FARMINGTON'):
+                        town_num = 33
+                        town_spelled = 'Farmington'
+                    elif (town == 'Glastonbury') or (town == 'glastonbury') or (town == 'GLASTONBURY'):
+                        town_num = 34
+                        town_spelled = 'Glastonbury'
+                    elif (town == 'Grandby') or (town == 'granby') or (town == 'GRANBY'):
+                        town_num = 35
+                        town_spelled = 'Granby'
+                    elif (town == 'Hartford') or (town == 'hartford') or (town == 'HARTFORD'):
+                        town_num = 36
+                        town_spelled = 'Hartford'
+                    elif (town == 'Hartland') or (town == 'hartland') or (town == 'HARTLAND'):
+                        town_num = 37
+                        town_spelled = 'Hartland'
+                    elif (town == 'Manchester') or (town == 'manchester') or (town == 'MANCHESTER'):
+                        town_num = 38
+                        town_spelled = 'Manchester'
+                    elif (town == 'Marlbrough') or (town == 'marlbrough') or (town == 'MARLBROUGH'):
+                        town_num = 39
+                        town_spelled = 'Marlbrough'
+                    elif (town == 'New Britian') or (town == 'New britian') or (town == 'new Britian') or (town == 'new britian') or (town == 'NEW BRITIAN'):
+                        town_num = 40
+                        town_spelled = 'New Britian'
+                    elif (town == 'Newington') or (town == 'newington') or (town == 'NEWINGTON'):
+                        town_num = 41
+                        town_spelled = 'Newington'
+                    elif (town == 'Plainville') or (town == 'planville') or (town == 'PLANVILLE'):
+                        town_num = 42
+                        town_spelled = 'Plainvill'
+                    elif (town == 'Rocky Hill') or (town == 'Rocky hill') or (town == 'rocky Hill') or (town == 'rocky hill') or (town == 'ROCKY HILL'):
+                        town_num = 43
+                        town_spelled = 'Rocky Hill'
+                    elif (town == 'Simsbury') or (town == 'simsbury') or (town == 'SIMSBURY'):
+                        town_num = 44
+                        town_spelled = 'Simsbury'
+                    elif (town == 'Southington') or (town == 'southington') or (town == 'SOUTHINGTON'):
+                        town_num = 45
+                        town_spelled = 'Southington'
+                    elif (town == 'South Windsor') or (town == 'South windsor') or (town == 'south Windsor') or (town == 'south windsor') or (town == 'SOUTH WINDSOR'):
+                        town_num = 46
+                        town_spelled = 'South Windsor'
+                    elif (town == 'Suffield') or (town == 'suffield') or (town == 'SuFFIELD'):
+                        town_num = 47
+                        town_spelled = 'Suffield'
+                    elif (town == 'West Hartford') or (town == 'West hartford') or (town == 'west Hartford') or (town == 'west hartford') or (town == 'WEST HARTFORD'):
+                        town_num = 48
+                        town_spelled = 'West Hartford'
+                    elif (town == 'Wethersfield') or (town == 'wethersfield') or (town == 'WETHERSFIELD'):
+                        town_num = 49
+                        town_spelled = 'Wethersfield'
+                    elif (town == 'Windsor') or (town == 'windsor') or (town == 'WINDSOR'):
+                        town_num = 50
+                        town_spelled = 'Windsor'
+                    elif (town == 'Windsor Locks') or (town == 'Windsor locks') or (town == 'windsor Locks') or (town == 'windsor locks') or (town == 'WINDSOR LOCKS'):
+                        town_num = 51
+                        town_spelled = 'Windsor Locks'
+                    elif (town == 'Exit') or (town == 'EXit') or (user_ok == 'EXIt') or (user_ok == 'EXIT') or (user_ok == 'eXit') or (user_ok == 'eXIt') or (user_ok == 'eXIT') or (user_ok == 'ExIT') or (user_ok == 'ExiT') or (user_ok == 'exIT') or (user_ok == 'exiT') or (user_ok == 'ExiT') or (user_ok == 'exit'):
+                        print ("I am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        x = 0
+                    else:
+                        print ("I am sorry that command isn't recconginized, please write your town from the list above. If you don't know how to spell your town type list")
+                    if (town_num>0 and town_num<163):
+                        while u_town_ok_num == 0:
+                            u_reinput = 0
+                            u_town_ok = input("Is this your town "+ town_spelled +"? Please answer with 'Yes' or 'No'\n")
+                            if (u_town_ok == 'Yes') or (u_town_ok == 'YEs') or (u_town_ok == 'YeS') or (u_town_ok == 'yeS') or (u_town_ok == 'YeS') or (u_town_ok == 'YES') or (u_town_ok == 'yes') or (u_town_ok == 'Y') or  (u_town_ok == 'y'):
+                                print("I am glad to hear that\n")
+                                town_lock = 1
+                                u_town_ok_num = 1
+                            elif (u_town_ok == 'No') or (u_town_ok == 'no') or (u_town_ok == 'nO') or (u_town_ok == 'NO') or (u_town_ok == 'N') or (u_town_ok == 'N'):
+                                while u_reinput == 0:
+                                    u_reinput = input("\nWould you like to re-input your town? Please type either 'Yes','No', or 'Exit'\n")
+                                    if (u_reinput == 'Yes') or (u_reinput == 'YEs') or (u_reinput == 'YeS') or (u_reinput == 'yeS') or (u_reinput == 'YeS') or (u_reinput == 'YES') or (u_reinput == 'yes') or (u_reinput == 'Y') or  (u_reinput == 'y'):
+                                        print("\nPlease enter your town\n")
+                                        town = 0
+                                        town_num = 0
+                                        county = 0
+                                        town_spelled = '___'
+                                        u_town_ok = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'No') or (u_county_ok == 'no') or (u_county_ok == 'nO') or (u_county_ok == 'NO') or (u_county_ok == 'N') or (u_county_ok == 'N'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'Exit') or (u_county_ok == 'EXit') or (u_county_ok == 'EXIt') or (u_county_ok == 'EXIT') or (u_county_ok == 'eXit') or (u_county_ok == 'eXIt') or (u_county_ok == 'eXIT') or (u_county_ok == 'ExIT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exIT') or (u_county_ok == 'exiT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exit'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    else:
+                                        print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+                            else:
+                                print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+            if county == 3:
+                while town_lock == 0:
+                    town = str(input("\nWhat town in Litchfield do you live in? To list towns type list\n"))
+                    if (town == 'List') or (town == 'LIST') or (town == 'list'):
+                        print("1. Barkhamsted\n2. Bethlehem\n3. Bridgewater\n4. Canaan\n5. Colebrook")
+                        print("6. Cornwall\n7. Goshen\n8. Harwinton\n9. Kent\n10 Litchfield")
+                        print("11. Morris\n12. New Hartford\n13. New Milford\n14. Norfolk\n15. North Cannan")
+                        print("16. Plymoth\n17. Roxbury\n18. Salisbury\n19. Sharon\n20. Thomaston")
+                        print("21. Torrington\n22. Warren\n23. Washington\n24. Watertown\n25. Winchester")
+                        print("26.Woodbury")
+                    elif (town == 'Barkhamsted') or (town == 'barkhamsted') or (town == 'BARKHAMSTED'):
+                        town_num = 52
+                        town_spelled = 'Barkhamsted'
+                    elif (town == 'Bethlehem') or (town == 'bethleham') or (town == 'BETHLEHAM'):
+                        town_num = 53
+                        town_spelled = 'Bethlehem'
+                    elif (town == 'Bridegwater') or (town == 'bridgewater') or (town == 'BRIDGEWATER'):
+                        town_num = 54
+                        town_spelled = 'Bridgewater'
+                    elif (town == 'Canaan') or (town == 'canaan') or (town == 'CANNAN'):
+                        town_num = 55
+                        town_spelled = 'Canaan'
+                    elif (town == 'Colebrook') or (town == 'colebrook') or (town == 'COLEBROOK'):
+                        town_num = 56
+                        town_spelled = 'Colebrook'
+                    elif (town == 'Cornwall') or (town == 'cornwall') or (town == 'CORNWALL'):
+                        town_num = 56
+                        town_spelled = 'Cornwall'
+                    elif (town == 'Goshen') or (town == 'goshen') or (town == 'GOSHEN'):
+                        town_num = 57
+                        town_spelled = 'Goshen'
+                    elif (town == 'Harwinton') or (town == 'harwinton') or (town == 'HARWINTON'):
+                        town_num = 58
+                        town_spelled = 'Harwington'
+                    elif (town == 'Kent') or (town == 'kent') or (town == 'KENT'):
+                        town_num = 59
+                        town_spelled = 'Kent'
+                    elif (town == 'Litchfield') or (town == 'litchfield') or (town == 'LITCHFIELD'):
+                        town_num = 60
+                        town_spelled = 'Litchfield'
+                    elif (town == 'Morris') or (town == 'morris') or (town == 'MORRIS'):
+                        town_num = 61
+                        town_spelled = 'Morris'
+                    elif (town == 'New Hartford') or (town == 'New hartford') or (town == 'new Hartford') or (town == 'new hartford') or (town == 'NEW HARTFORD'):
+                        town_num = 62
+                        town_spelled = 'New hartford'
+                    elif (town == 'New Milford') or (town == 'New milford') or (town == 'new Milford') or (town == 'new milford') or (town == 'NEW MILFORD'):
+                        town_num = 63
+                        town_spelled = 'New Milford'
+                    elif (town == 'Norfolk') or (town == 'norfolk') or (town == 'NORFOLK'):
+                        town_num = 64
+                        town_spelled = 'Norfolk'
+                    elif (town == 'North Cannan') or (town == 'North cannan') or (town == 'north Cannan') or (town == 'north cannan') or (town == 'NORTH CANNAN'):
+                        town_num = 65
+                        town_spelled = 'North Cannan'
+                    elif (town == 'Plymouth') or (town == 'plymoth') or (town == 'PLYMOTH'):
+                        town_num = 66
+                        town_spelled = 'Plymouth'
+                    elif (town == 'Roxbury') or (town == 'roxbury') or (town == 'ROXBURY'):
+                        town_num = 67
+                        town_spelled = 'Roxbury'
+                    elif (town == 'Sallsbury') or (town == 'sallsbury') or (town == 'SALLSBURY'):
+                        town_num = 68
+                        town_spelled = 'Sallsbury'
+                    elif (town == 'Sharon') or (town == 'sharon') or (town == 'SHARON'):
+                        town_num = 69
+                        town_spelled = 'Sharon'
+                    elif (town == 'Thomanston') or (town == 'thomanston') or (town == 'THOMANSTON'):
+                        town_num = 70
+                        town_spelled = 'Thomanston'
+                    elif (town == 'Torrington') or (town == 'torrington') or (town == 'TORRINGTON'):
+                        town_num = 71
+                        town_spelled = 'Torrington'
+                    elif (town == 'Warren') or (town == 'warren') or (town == 'WARREN'):
+                        town_num = 72
+                        town_spelled = 'Warren'
+                    elif (town == 'Washington') or (town == 'washington') or (town == 'WASINGTON'):
+                        town_num = 73
+                        town_spelled = 'Washington'
+                    elif (town == 'Watertown') or (town == 'watertown') or (town == 'WATERTOWN'):
+                        town_num = 74
+                        town_spelled = 'Watertown'
+                    elif (town == 'Winchester') or (town == 'winchester') or (town == 'WINCHESTER'):
+                        town_num = 75
+                        town_spelled = 'Winchester'
+                    elif (town == 'Woodbury') or (town == 'woodbury') or (town == 'WOODBURY'):
+                        town_num = 76
+                        town_spelled = 'Woodbury'
+                    elif (town == 'Exit') or (town == 'EXit') or (user_ok == 'EXIt') or (user_ok == 'EXIT') or (user_ok == 'eXit') or (user_ok == 'eXIt') or (user_ok == 'eXIT') or (user_ok == 'ExIT') or (user_ok == 'ExiT') or (user_ok == 'exIT') or (user_ok == 'exiT') or (user_ok == 'ExiT') or (user_ok == 'exit'):
+                        print ("I am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        x = 0
+                    else:
+                        print ("I am sorry that command isn't recconginized, please write your town from the list above. If you don't know how to spell your town type list")
+                    if (town_num>0 and town_num<163):
+                        while u_town_ok_num == 0:
+                            u_reinput = 0
+                            u_town_ok = input("Is this your town "+ town_spelled +"? Please answer with 'Yes' or 'No'\n")
+                            if (u_town_ok == 'Yes') or (u_town_ok == 'YEs') or (u_town_ok == 'YeS') or (u_town_ok == 'yeS') or (u_town_ok == 'YeS') or (u_town_ok == 'YES') or (u_town_ok == 'yes') or (u_town_ok == 'Y') or  (u_town_ok == 'y'):
+                                print("I am glad to hear that\n")
+                                town_lock = 1
+                                u_town_ok_num = 1
+                            elif (u_town_ok == 'No') or (u_town_ok == 'no') or (u_town_ok == 'nO') or (u_town_ok == 'NO') or (u_town_ok == 'N') or (u_town_ok == 'N'):
+                                while u_reinput == 0:
+                                    u_reinput = input("\nWould you like to re-input your town? Please type either 'Yes','No', or 'Exit'\n")
+                                    if (u_reinput == 'Yes') or (u_reinput == 'YEs') or (u_reinput == 'YeS') or (u_reinput == 'yeS') or (u_reinput == 'YeS') or (u_reinput == 'YES') or (u_reinput == 'yes') or (u_reinput == 'Y') or  (u_reinput == 'y'):
+                                        print("\nPlease enter your town\n")
+                                        town = 0
+                                        town_num = 0
+                                        county = 0
+                                        town_spelled = '___'
+                                        u_town_ok = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'No') or (u_county_ok == 'no') or (u_county_ok == 'nO') or (u_county_ok == 'NO') or (u_county_ok == 'N') or (u_county_ok == 'N'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'Exit') or (u_county_ok == 'EXit') or (u_county_ok == 'EXIt') or (u_county_ok == 'EXIT') or (u_county_ok == 'eXit') or (u_county_ok == 'eXIt') or (u_county_ok == 'eXIT') or (u_county_ok == 'ExIT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exIT') or (u_county_ok == 'exiT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exit'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    else:
+                                        print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+                            else:
+                                print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+            if county == 4:
+                while town_lock == 0:
+                    town = str(input("\nWhat town in Middlesex do you live in? To list towns type list\n"))
+                    if (town == 'List') or (town == 'LIST') or (town == 'list'):
+                        print("1. Chester\n2. Clinton\n3. Cromwell\n4. Deep River\n5. Durham")
+                        print("6. East Haddam\n7. East hampton\n8. Essex\n9. Haddam\n10. Killnigworth")
+                        print("11. Middlefield\n12. Middletown\n13. Old Saybroo\n14. Portland\n15. Westbrook")
+                    elif (town == 'Chester') or (town == 'chester') or (town == 'CHESTER'):
+                        town_num = 77
+                        town_spelled = 'Chester'
+                    elif (town == 'Clinton') or (town == 'clinton') or (town == 'CLINTON'):
+                        town_num = 78
+                        town_spelled = 'Clinton'
+                    elif (town == 'Cromwell') or (town == 'cromwell') or (town == 'CROMWELL'):
+                        town_num = 79
+                        town_spelled = 'Cromwell'
+                    elif (town == 'Deep River') or (town == 'Deep river') or (town == 'deep River') or (town == 'deep river') or (town == 'DEEP RIVER'):
+                        town_num = 80
+                        town_spelled = 'Deep River'
+                    elif (town == 'Durham') or (town == 'durham') or (town == 'DURHAM'):
+                        town_num = 81
+                        town_spelled = 'Durham'
+                    elif (town == 'East Haddam') or (town == 'East haddam') or (town == 'east Haddam') or (town == 'east haddam') or (town == 'EAST HADDAM'):
+                        town_num = 82
+                        town_spelled = 'East Haddam'
+                    elif (town == 'East Hampton') or (town == 'East hampton') or (town == 'east Hampton') or (town == 'east hampton') or (town == 'EAST HAMPTON'):
+                        town_num = 83
+                        town_spelled = 'East Hampton'
+                    elif (town == 'Essex') or (town == 'essex') or (town == 'ESSEX'):
+                        town_num = 84
+                        town_spelled = 'Essex'
+                    elif (town == 'Haddam') or (town == 'haddam') or (town == 'HADDAM'):
+                        town_num = 85
+                        town_spelled = 'Haddam'
+                    elif (town == 'Killingworth') or (town == 'killingworth') or (town == 'KILLINGWORTH'):
+                        town_num = 86
+                        town_spelled ='Killingworth'
+                    elif (town == 'Middlefield') or (town == 'middlefield') or (town == 'MIDDLEFIELD'):
+                        town_num = 87
+                        town_spelled = 'Middlefield'
+                    elif (town == 'Middletown') or (town == 'middletown') or (town == 'MIDDLETOWN'):
+                        town_num = 88
+                        town_spelled = 'Middletown'
+                    elif (town == 'Old Saybrook') or (town == 'Old saybrook') or (town == 'old Saybrook') or (town == 'old saybrook') or (town == 'OLD SAYBROOK'):
+                        town_num = 89
+                        town_spelled = 'Old Saybrook'
+                    elif (town == 'Portland') or (town == 'portland') or (town == 'PORTLAND'):
+                        town_num = 90
+                        town_spelled = 'Portland'
+                    elif (town == 'Westbrook') or (town == 'westbrook') or (town == 'WESTBROOKE'):
+                        town_num = 91
+                        town_spelled = 'Westbrook'
+                    elif (town == 'Exit') or (town == 'EXit') or (user_ok == 'EXIt') or (user_ok == 'EXIT') or (user_ok == 'eXit') or (user_ok == 'eXIt') or (user_ok == 'eXIT') or (user_ok == 'ExIT') or (user_ok == 'ExiT') or (user_ok == 'exIT') or (user_ok == 'exiT') or (user_ok == 'ExiT') or (user_ok == 'exit'):
+                        print ("I am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        x = 0
+                    else:
+                        print ("I am sorry that command isn't recconginized, please write your town from the list above. If you don't know how to spell your town type list")
+                    if (town_num>0 and town_num<163):
+                        while u_town_ok_num == 0:
+                            u_reinput = 0
+                            u_town_ok = input("Is this your town "+ town_spelled +"? Please answer with 'Yes' or 'No'\n")
+                            if (u_town_ok == 'Yes') or (u_town_ok == 'YEs') or (u_town_ok == 'YeS') or (u_town_ok == 'yeS') or (u_town_ok == 'YeS') or (u_town_ok == 'YES') or (u_town_ok == 'yes') or (u_town_ok == 'Y') or  (u_town_ok == 'y'):
+                                print("I am glad to hear that\n")
+                                town_lock = 1
+                                u_town_ok_num = 1
+                            elif (u_town_ok == 'No') or (u_town_ok == 'no') or (u_town_ok == 'nO') or (u_town_ok == 'NO') or (u_town_ok == 'N') or (u_town_ok == 'N'):
+                                while u_reinput == 0:
+                                    u_reinput = input("\nWould you like to re-input your town? Please type either 'Yes','No', or 'Exit'\n")
+                                    if (u_reinput == 'Yes') or (u_reinput == 'YEs') or (u_reinput == 'YeS') or (u_reinput == 'yeS') or (u_reinput == 'YeS') or (u_reinput == 'YES') or (u_reinput == 'yes') or (u_reinput == 'Y') or  (u_reinput == 'y'):
+                                        print("\nPlease enter your town\n")
+                                        town = 0
+                                        town_num = 0
+                                        county = 0
+                                        town_spelled = '___'
+                                        u_town_ok = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'No') or (u_county_ok == 'no') or (u_county_ok == 'nO') or (u_county_ok == 'NO') or (u_county_ok == 'N') or (u_county_ok == 'N'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'Exit') or (u_county_ok == 'EXit') or (u_county_ok == 'EXIt') or (u_county_ok == 'EXIT') or (u_county_ok == 'eXit') or (u_county_ok == 'eXIt') or (u_county_ok == 'eXIT') or (u_county_ok == 'ExIT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exIT') or (u_county_ok == 'exiT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exit'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    else:
+                                        print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+                            else:
+                                print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+            if county == 5:
+                while town_lock == 0:
+                    town = str(input("\nWhat town in New Haven do you live in? To list towns type list\n"))
+                    if (town == 'List') or (town == 'LIST') or (town == 'list'):
+                        print("1. Ansonia\n2. Beacon Falls\n3. Bethany\n4. Branford\n5. Cheshire")
+                        print("6. Derby\n7. East Haven\n8. Gullford\n9. Hamden\n10. Madison")
+                        print("11.Meriden\n12. Middlebury\n13. Milford\n14. Naugatuck\n 15. New Haven")
+                        print("16. Seymour\n17. Southbury\n18. Wallingford\n19. Waterbury\n20. Westhaven")
+                        print("21. Wolcott\n 22. Woodbridge")
+                    elif (town == 'Ansonia') or (town == 'ansonia') or (town == 'ANSONIA'):
+                        town_num = 92
+                        town_spelled = 'Ansonia'
+                    elif (town == 'Beacon Falls') or (town == 'Beacon falls') or (town == 'beacon Falls') or (town == 'beacon falls') or (town == 'BEACON FALLS'):
+                        town_num = 93
+                        town_spelled = 'Beacon Falls'
+                    elif (town == 'Bethany') or (town == 'bethany') or (town == 'BEATHNY'):
+                        town_num = 94
+                        town_spelled = 'Bethany'
+                    elif (town == 'Branford') or (town == 'branford') or (town == 'BRANFORD'):
+                        town_num = 95
+                        town_spelled = 'Branford'
+                    elif (town == 'Cheshire') or (town == 'cheshire') or (town == 'CHESHIRE'):
+                        town_num = 96
+                        town_spelled = 'Cheshire'
+                    elif (town == 'Derby') or (town == 'derby') or (town == 'DERBY'):
+                        town_num = 97
+                        town_spelled = 'Derby'
+                    elif (town == 'East Haven') or (town == 'East haven') or (town == 'east Haven') or (town == 'east haven') or (town == 'EAST HAVEN'):
+                        town_num = 98
+                        town_spelled = 'East Haven'
+                    elif (town == 'Guliford') or (town == 'guliford') or (town == 'GULIFORD'):
+                        town_num = 99
+                        town_spelled = 'Guliford'
+                    elif (town == 'Hamden') or (town == 'hamden') or (town == 'HAMDEN'):
+                        town_num = 100
+                        town_spelled = 'Hamden'
+                    elif (town == 'Madison') or (town == 'madison') or (town == 'MADISON'):
+                        town_num = 101
+                        town_spelled = 'Madison'
+                    elif (town == 'Meriden') or (town == 'meriden') or (town == 'MERIDEN'):
+                        town_num = 102
+                        town_spelled = 'Meriden'
+                    elif (town == 'Middlebury') or (town == 'middlebury') or (town == 'MIDDLEBURY'):
+                        town_num = 103
+                        town_spelled = 'Middlebury'
+                    elif (town == 'Milford') or (town == 'milford') or (town == 'MILFORD'):
+                        town_num = 104
+                        town_spelled = 'Milford'
+                    elif (town == 'Naugatuck') or (town == 'naugatuck') or (town == 'NAUGATUCK'):
+                        town_num = 105
+                        town_spelled = 'Naugatuck'
+                    elif (town == 'New Haven') or (town == 'New haven') or (town == 'new Haven') or (town == 'new haven') or (town == 'NEW HAVEN'):
+                        town_num = 106
+                        town_spelled = 'New Haven'
+                    elif (town == 'North Branford') or (town == 'North branford') or (town == 'north Branford') or (town == 'north branford') or (town == 'NORTH BRANFORD'):
+                        town_num = 107
+                        town_spelled = 'North Branford'
+                    elif (town == 'North Haven') or (town == 'North haven') or (town == 'north haven') or (town == 'north haven') or (town == 'NORTH HAVEN'):
+                        town_num = 108
+                        town_spelled = 'North Haven'
+                    elif (town == 'Southbury') or (town == 'southbury') or (town == 'SOUTHBURY'):
+                        town_num = 109
+                        town_spelled = 'Southbury'
+                    elif (town == 'Wallingford') or (town == 'wallingford') or (town == 'WALLINGFORD'):
+                        town_num = 110
+                        town_spelled = 'Wallingford'
+                    elif (town == 'Waterbury') or (town == 'waterbury') or (town == 'WATERBURY'):
+                        town_num = 111
+                        town_spelled = 'Waterbury'
+                    elif (town == 'West Haven') or (town == 'West haven') or (town == 'west Haven') or (town == 'west haven') or (town == 'WEST HAVEN'):
+                        town_num = 112
+                        town_spelled = 'West Haven'
+                    elif (town == 'Wolocott') or (town == 'wolocott') or (town == 'WOLOCOTT'):
+                        town_num = 113
+                        town_spelled = 'Wolocott'
+                    elif (town == 'Woodbridge') or (town == 'woodbridge') or (town == 'WOODBRIDGE'):
+                        town_num = 114
+                        town_spelled = 'Woodbridge'
+                    elif (town == 'Exit') or (town == 'EXit') or (user_ok == 'EXIt') or (user_ok == 'EXIT') or (user_ok == 'eXit') or (user_ok == 'eXIt') or (user_ok == 'eXIT') or (user_ok == 'ExIT') or (user_ok == 'ExiT') or (user_ok == 'exIT') or (user_ok == 'exiT') or (user_ok == 'ExiT') or (user_ok == 'exit'):
+                        print ("I am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        x = 0
+                    else:
+                        print ("I am sorry that command isn't recconginized, please write your town from the list above. If you don't know how to spell your town type list")
+                    if (town_num>0 and town_num<163):
+                        while u_town_ok_num == 0:
+                            u_reinput = 0
+                            u_town_ok = input("Is this your town "+ town_spelled +"? Please answer with 'Yes' or 'No'\n")
+                            if (u_town_ok == 'Yes') or (u_town_ok == 'YEs') or (u_town_ok == 'YeS') or (u_town_ok == 'yeS') or (u_town_ok == 'YeS') or (u_town_ok == 'YES') or (u_town_ok == 'yes') or (u_town_ok == 'Y') or  (u_town_ok == 'y'):
+                                print("I am glad to hear that\n")
+                                town_lock = 1
+                                u_town_ok_num = 1
+                            elif (u_town_ok == 'No') or (u_town_ok == 'no') or (u_town_ok == 'nO') or (u_town_ok == 'NO') or (u_town_ok == 'N') or (u_town_ok == 'N'):
+                                while u_reinput == 0:
+                                    u_reinput = input("\nWould you like to re-input your town? Please type either 'Yes','No', or 'Exit'\n")
+                                    if (u_reinput == 'Yes') or (u_reinput == 'YEs') or (u_reinput == 'YeS') or (u_reinput == 'yeS') or (u_reinput == 'YeS') or (u_reinput == 'YES') or (u_reinput == 'yes') or (u_reinput == 'Y') or  (u_reinput == 'y'):
+                                        print("\nPlease enter your town\n")
+                                        town = 0
+                                        town_num = 0
+                                        county = 0
+                                        town_spelled = '___'
+                                        u_town_ok = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'No') or (u_county_ok == 'no') or (u_county_ok == 'nO') or (u_county_ok == 'NO') or (u_county_ok == 'N') or (u_county_ok == 'N'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'Exit') or (u_county_ok == 'EXit') or (u_county_ok == 'EXIt') or (u_county_ok == 'EXIT') or (u_county_ok == 'eXit') or (u_county_ok == 'eXIt') or (u_county_ok == 'eXIT') or (u_county_ok == 'ExIT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exIT') or (u_county_ok == 'exiT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exit'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    else:
+                                        print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+                            else:
+                                print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+            if county == 6:
+                while town_lock == 0:
+                    town = str(input("\nWhat town in New London do you live in? To list towns type list\n"))
+                    if (town == 'List') or (town == 'LIST') or (town == 'list'):
+                        print("1. Bozrah\n2. Colchester\n3. East Lyme\n4. Franklin\n5. Griswold")
+                        print("6. Groton\n 7. Lebanon\n8. Ledyard\n9. Lisbon\n10. Lyme")
+                        print("11. Montville\n12. New London\n13. North Stonington\n14. Norwich\n 15.Old Lyme")
+                        print("16. Preston\n17. Salem\n18. Sprague\n19. Stonington\n20. Voluntown")
+                        print("21.Waterford")
+                    elif (town == 'Bozrah') or (town == 'bozrah') or (town == 'BOZRAH'):
+                        town_num = 115
+                        town_spelled = 'Bozrah'
+                    elif (town == 'Colchester') or (town == 'colchester') or (town == 'COLCHESTER'):
+                        town_num = 116
+                        town_spelled = 'Colchester'
+                    elif (town == 'East Lyme') or (town == 'East lyme') or (town == 'east Lyme') or (town == 'east lyme') or (town == 'EAST LYME'):
+                        town_num = 117
+                        town_spelled = 'East Lyme'
+                    elif (town == 'Franklin') or (town == 'franklin') or (town == 'FRANKLIN'):
+                        town_num = 118
+                        town_spelled = 'Franklin'
+                    elif (town == 'Griswold') or (town == 'griswold') or (town == 'GRISWOLD'):
+                        town_num = 119
+                        town_spelled = 'Griswold'
+                    elif (town == 'Groton') or (town == 'groton') or (town == 'GROTON'):
+                        town_num = 120
+                        town_spelled = 'Groton'
+                    elif (town == 'Lebanon') or (town == 'lebanon') or (town == 'LEBANON'):
+                        town_num = 121
+                        town_spelled = 'Lebanon'
+                    elif (town == 'Ledyard') or (town == 'ledyard') or (town == 'LEDYARD'):
+                        town_num = 122
+                        town_spelled = 'Ledyard'
+                    elif (town == 'Lisbon') or (town == 'lisbon') or (town == 'LISBON'):
+                        town_num = 123
+                        town_spelled = 'Lisbon'
+                    elif (town == 'Lyme') or (town == 'lyme') or (town == 'LYME'):
+                        town_num = 124
+                        town_spelled = 'Lyme'
+                    elif (town == 'Montville') or (town == 'montville') or (town == 'MONTVILLE'):
+                        town_num = 125
+                        town_spelled = 'Montville'
+                    elif (town == 'New London') or (town == 'New london') or (town == 'new London') or (town == 'new london') or (town == 'NEW LONDON'):
+                        town_num = 126
+                        town_spelled = 'New London'
+                    elif (town == 'North Storington') or (town == 'North storington') or (town == 'north Storington') or (town == 'north storington') or (town == 'NORTH STORINGTON'):
+                        town_num = 127
+                        town_spelled = 'North Storington'
+                    elif (town == 'Norwich') or (town == 'norwich') or (town == 'NORWICH'):
+                        town_num = 128
+                        town_spelled = 'Norwich'
+                    elif (town == 'Old Lyme') or (town == 'Old lyme') or (town == 'old Lyme') or (town == 'old lyme') or (town == 'OLD LYME'):
+                        town_num = 129
+                        town_spelled = 'Old Lyme'
+                    elif (town == 'Preston') or (town == 'preston') or (town == 'PRESTON'):
+                        town_num = 130
+                        town_spelled = 'Preston'
+                    elif (town == 'Salem') or (town == 'salem') or (town == 'SALEM'):
+                        town_num = 131
+                        town_spelled = 'Salem'
+                    elif (town == 'Sprague') or (town == 'sprague') or (town == 'SPRAGUE'):
+                        town_num = 132
+                        town_spelled = 'Sprague'
+                    elif (town == 'Stonington') or (town == 'stonington') or (town == 'STONINGTON'):
+                        town_num = 133
+                        town_spelled = 'Stonington'
+                    elif (town == 'Voluntown') or (town == 'voluntown') or (town == 'VOLUNTOWN'):
+                        town_num = 134
+                        town_spelled = 'Voluntown'
+                    elif (town == 'Waterford') or (town == 'waterford') or (town == 'WATERFORD'):
+                        town_num = 135
+                        town_spelled = 'Waterford'
+                    elif (town == 'Exit') or (town == 'EXit') or (user_ok == 'EXIt') or (user_ok == 'EXIT') or (user_ok == 'eXit') or (user_ok == 'eXIt') or (user_ok == 'eXIT') or (user_ok == 'ExIT') or (user_ok == 'ExiT') or (user_ok == 'exIT') or (user_ok == 'exiT') or (user_ok == 'ExiT') or (user_ok == 'exit'):
+                        print ("I am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        x = 0
+                    else:
+                        print ("I am sorry that command isn't recconginized, please write your town from the list above. If you don't know how to spell your town type list")
+                    if (town_num>0 and town_num<163):
+                        while u_town_ok_num == 0:
+                            u_reinput = 0
+                            u_town_ok = input("Is this your town "+ town_spelled +"? Please answer with 'Yes' or 'No'\n")
+                            if (u_town_ok == 'Yes') or (u_town_ok == 'YEs') or (u_town_ok == 'YeS') or (u_town_ok == 'yeS') or (u_town_ok == 'YeS') or (u_town_ok == 'YES') or (u_town_ok == 'yes') or (u_town_ok == 'Y') or  (u_town_ok == 'y'):
+                                print("I am glad to hear that\n")
+                                town_lock = 1
+                                u_town_ok_num = 1
+                            elif (u_town_ok == 'No') or (u_town_ok == 'no') or (u_town_ok == 'nO') or (u_town_ok == 'NO') or (u_town_ok == 'N') or (u_town_ok == 'N'):
+                                while u_reinput == 0:
+                                    u_reinput = input("\nWould you like to re-input your town? Please type either 'Yes','No', or 'Exit'\n")
+                                    if (u_reinput == 'Yes') or (u_reinput == 'YEs') or (u_reinput == 'YeS') or (u_reinput == 'yeS') or (u_reinput == 'YeS') or (u_reinput == 'YES') or (u_reinput == 'yes') or (u_reinput == 'Y') or  (u_reinput == 'y'):
+                                        print("\nPlease enter your town\n")
+                                        town = 0
+                                        town_num = 0
+                                        county = 0
+                                        town_spelled = '___'
+                                        u_town_ok = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'No') or (u_county_ok == 'no') or (u_county_ok == 'nO') or (u_county_ok == 'NO') or (u_county_ok == 'N') or (u_county_ok == 'N'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'Exit') or (u_county_ok == 'EXit') or (u_county_ok == 'EXIt') or (u_county_ok == 'EXIT') or (u_county_ok == 'eXit') or (u_county_ok == 'eXIt') or (u_county_ok == 'eXIT') or (u_county_ok == 'ExIT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exIT') or (u_county_ok == 'exiT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exit'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    else:
+                                        print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+                            else:
+                                print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+            if county == 7:
+                while town_lock == 0:
+                    town = str(input("\nWhat town in Tolland do you live in? To list towns type list\n"))
+                    if (town == 'List') or (town == 'LIST') or (town == 'list'):
+                        print("1. Andover\n2. Bolton\n3. Columbia\n4. Coventry\n5. Ellington")
+                        print("6. Hebron\n7. Mansfield\n8. Somers\n9. Strafford\n10. Tolland")
+                        print("11. Union\n12. Vernon\n13. Willington")
+                    elif (town == 'Andover') or (town == 'andover') or (town == 'ANDOVER'):
+                            town_num = 136
+                            town_spelled = 'Andover'
+                    elif (town == 'Bolton') or (town == 'bolton') or (town == 'BOLTON'):
+                        town_num = 137
+                        town_spelled = 'Bolton'
+                    elif (town == 'Coventry') or (town == 'coventry') or (town == 'COVENTRY'):
+                        town_num = 138
+                        town_spelled = 'Coventry'
+                    elif (town == 'Elington') or (town == 'elington') or (town == 'ELINGTON'):
+                        town_num = 139
+                        town_spelled = 'Elington'
+                    elif (town == 'Hebron') or (town == 'hebron') or (town == 'HEBRON'):
+                        town_num = 140
+                        town_spelled = 'Hebron'
+                    elif (town == 'Mansfield') or (town == 'mansfield') or (town == 'MANSFIELD'):
+                        town_num = 141
+                        town_spelled = 'Mansfield'
+                    elif (town == 'Somers') or (town == 'somers') or (town == 'SOMERS'):
+                        town_num = 142
+                        town_spelled = 'Somers'
+                    elif (town == 'Strafford') or (town == 'strafford') or (town == 'STRAFFORD'):
+                        town_num = 143
+                        town_spelled = "Strafford"
+                    elif (town == 'Tolland') or (town == 'tolland') or (town == 'TOLLAND'):
+                        town_num = 144
+                        town_spelled = 'Tolland'
+                    elif (town == 'Union') or (town == 'union') or (town == 'UNION'):
+                        town_num = 145
+                        town_spelled = 'Union'
+                    elif (town == 'Vernon') or (town == 'vernon') or (town == 'VERNON'):
+                        town_num = 146
+                        town_spelled = 'Vernon'
+                    elif (town == 'Willington') or (town == 'willington') or (town == 'willington'):
+                        town_num = 147
+                        town_spelled = 'Willington'
+                    elif (town == 'Exit') or (town == 'EXit') or (user_ok == 'EXIt') or (user_ok == 'EXIT') or (user_ok == 'eXit') or (user_ok == 'eXIt') or (user_ok == 'eXIT') or (user_ok == 'ExIT') or (user_ok == 'ExiT') or (user_ok == 'exIT') or (user_ok == 'exiT') or (user_ok == 'ExiT') or (user_ok == 'exit'):
+                        print ("I am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        x = 0
+                    else:
+                        print ("I am sorry that command isn't recconginized, please write your town from the list above. If you don't know how to spell your town type list")
+                    if (town_num>0 and town_num<163):
+                        while u_town_ok_num == 0:
+                            u_reinput = 0
+                            u_town_ok = input("Is this your town "+ town_spelled +"? Please answer with 'Yes' or 'No'\n")
+                            if (u_town_ok == 'Yes') or (u_town_ok == 'YEs') or (u_town_ok == 'YeS') or (u_town_ok == 'yeS') or (u_town_ok == 'YeS') or (u_town_ok == 'YES') or (u_town_ok == 'yes') or (u_town_ok == 'Y') or  (u_town_ok == 'y'):
+                                print("I am glad to hear that\n")
+                                town_lock = 1
+                                u_town_ok_num = 1
+                            elif (u_town_ok == 'No') or (u_town_ok == 'no') or (u_town_ok == 'nO') or (u_town_ok == 'NO') or (u_town_ok == 'N') or (u_town_ok == 'N'):
+                                while u_reinput == 0:
+                                    u_reinput = input("\nWould you like to re-input your town? Please type either 'Yes','No', or 'Exit'\n")
+                                    if (u_reinput == 'Yes') or (u_reinput == 'YEs') or (u_reinput == 'YeS') or (u_reinput == 'yeS') or (u_reinput == 'YeS') or (u_reinput == 'YES') or (u_reinput == 'yes') or (u_reinput == 'Y') or  (u_reinput == 'y'):
+                                        print("\nPlease enter your town\n")
+                                        town = 0
+                                        town_num = 0
+                                        county = 0
+                                        town_spelled = '___'
+                                        u_town_ok = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'No') or (u_county_ok == 'no') or (u_county_ok == 'nO') or (u_county_ok == 'NO') or (u_county_ok == 'N') or (u_county_ok == 'N'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'Exit') or (u_county_ok == 'EXit') or (u_county_ok == 'EXIt') or (u_county_ok == 'EXIT') or (u_county_ok == 'eXit') or (u_county_ok == 'eXIt') or (u_county_ok == 'eXIT') or (u_county_ok == 'ExIT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exIT') or (u_county_ok == 'exiT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exit'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    else:
+                                        print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+                            else:
+                                print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+            if county == 8:
+                while town_lock == 0:
+                    town = str(input("\nWhat town in Windham do you live in? To list towns type list\n"))
+                    if (town == 'List') or (town == 'LIST') or (town == 'list'):
+                        print("1. Ashford\n2. Brooklyn\n3. Canterbury\n4. Chaplin\n5. Eastford")
+                        print("6. Hampton\n7. Killingly\n8. Plainfield\n9. Pomfret\n10. Putnam")
+                        print("11. Scotland\n12. Sterling\n13. Tompson\n14. Windham\n15. Woodstock")
+                    elif (town == 'Ashford') or (town == 'ashford') or (town == 'ASHFORD'):
+                        town_num = 148
+                        town_spelled = 'Ashford'
+                    elif (town == 'Brooklyn') or (town == 'brooklyn') or (town == 'BROOKLYN'):
+                        town_num = 149
+                        town_spelled = 'Brooklyn'
+                    elif (town == 'Canterbury') or (town == 'canterbury') or (town == 'CANTERBURY'):
+                        town_num = 150
+                        town_spelled = 'Canterbury'
+                    elif (town == 'Chaplin') or (town == 'chaplin') or (town == 'CHAPLIN'):
+                        town_num = 151
+                        town_spelled = 'Chaplin'
+                    elif (town == 'Eastford') or (town == 'eastford') or (town == 'EASTFORD'):
+                        town_num = 152
+                        town_spelled = 'Eastford'
+                    elif (town == 'Hampton') or (town == 'hampton') or (town == 'HAMPTON'):
+                        town_num = 153
+                        town_spelled = 'Hampton'
+                    elif (town == 'Killingly') or (town == 'killingly') or (town == 'KILLINGLY'):
+                        town_num = 154
+                        town_spelled = 'Killingly'
+                    elif (town == 'Plainfield') or (town == 'plainfield') or (town == 'PLAINFIELD'):
+                        town_num = 155
+                        town_spelled = 'Plainfield'
+                    elif (town == 'Pomfret') or (town == 'pomfret') or (town == 'POMFRET'):
+                        town_num = 156
+                        town_spelled = 'Pomfret'
+                    elif (town == 'Putnam') or (town == 'putnam') or (town == 'PUTNAM'):
+                        town_num = 157
+                        town_spelled = 'Putnam'
+                    elif (town == 'Scotland') or (town == 'scotland') or (town == 'SCOTLNAD'):
+                        town_num = 158
+                        town_spelled = 'Scotland'
+                    elif (town == 'Sterling') or (town == 'sterling') or (town == 'STERLING'):
+                        town_num = 159
+                        town_spelled = 'Steerling'
+                    elif (town == 'Thompson') or (town == 'thompson') or (town == 'THOMPSON'):
+                        town_num = 160
+                        town_spelled = 'Thompson'
+                    elif (town == 'Windham') or (town == 'windham') or (town == 'WINDHAM'):
+                        town_num = 161
+                        town_spelled = 'Windham'
+                    elif (town == 'Woodstock') or (town == 'woodstock') or (town == 'WOODSTOCK'):
+                        town_num = 162
+                        town_spelled = 'Woodstock'
+                    elif (town == 'Exit') or (town == 'EXit') or (user_ok == 'EXIt') or (user_ok == 'EXIT') or (user_ok == 'eXit') or (user_ok == 'eXIt') or (user_ok == 'eXIT') or (user_ok == 'ExIT') or (user_ok == 'ExiT') or (user_ok == 'exIT') or (user_ok == 'exiT') or (user_ok == 'ExiT') or (user_ok == 'exit'):
+                        print ("I am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        x = 0
+                    else:
+                        print ("I am sorry that command isn't recconginized, please write your town from the list above. If you don't know how to spell your town type list")
+                    if (town_num>0 and town_num<163):
+                        while u_town_ok_num == 0:
+                            u_reinput = 0
+                            u_town_ok = input("Is this your town "+ town_spelled +"? Please answer with 'Yes' or 'No'\n")
+                            if (u_town_ok == 'Yes') or (u_town_ok == 'YEs') or (u_town_ok == 'YeS') or (u_town_ok == 'yeS') or (u_town_ok == 'YeS') or (u_town_ok == 'YES') or (u_town_ok == 'yes') or (u_town_ok == 'Y') or  (u_town_ok == 'y'):
+                                print("I am glad to hear that\n")
+                                town_lock = 1
+                                u_town_ok_num = 1
+                            elif (u_town_ok == 'No') or (u_town_ok == 'no') or (u_town_ok == 'nO') or (u_town_ok == 'NO') or (u_town_ok == 'N') or (u_town_ok == 'N'):
+                                while u_reinput == 0:
+                                    u_reinput = input("\nWould you like to re-input your town? Please type either 'Yes','No', or 'Exit'\n")
+                                    if (u_reinput == 'Yes') or (u_reinput == 'YEs') or (u_reinput == 'YeS') or (u_reinput == 'yeS') or (u_reinput == 'YeS') or (u_reinput == 'YES') or (u_reinput == 'yes') or (u_reinput == 'Y') or  (u_reinput == 'y'):
+                                        print("\nPlease enter your town\n")
+                                        town = 0
+                                        town_num = 0
+                                        county = 0
+                                        town_spelled = '___'
+                                        u_town_ok = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'No') or (u_county_ok == 'no') or (u_county_ok == 'nO') or (u_county_ok == 'NO') or (u_county_ok == 'N') or (u_county_ok == 'N'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    elif (u_county_ok == 'Exit') or (u_county_ok == 'EXit') or (u_county_ok == 'EXIt') or (u_county_ok == 'EXIT') or (u_county_ok == 'eXit') or (u_county_ok == 'eXIt') or (u_county_ok == 'eXIT') or (u_county_ok == 'ExIT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exIT') or (u_county_ok == 'exiT') or (u_county_ok == 'ExiT') or (u_county_ok == 'exit'):
+                                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                                        exit = 1
+                                        x = 0
+                                        u_town_ok_num = 1
+                                        town_lock = 1
+                                        u_reinput = 1
+                                    else:
+                                        print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+                            else:
+                                print("I am sorry that command isn't recconginized, please input either 'Yes', 'No', or 'Exit'")
+        
+        #Start of mental health questions
+            while c == 0:
+                u_comfort = str(input("\nAre you comfortable answering a few mental health questions?\n"))
+                if (u_comfort == 'Yes') or (u_comfort == 'YEs') or (u_comfort == 'YeS') or (u_comfort == 'yeS') or (u_comfort == 'YeS') or (u_comfort == 'YES') or (u_comfort == 'yes') or (u_comfort == 'Y') or  (u_comfort == 'y'):
+                    print ("\nWell I hope you are sitting in a comfortable place, I have a few questions for you")
+                    print ("If you feel uncomfortable at any time please type 'Exit'\n\n")
+                    question_amt = str(input("Would you rather take the (S)hort test or the (N)ormal length?\n"))
+                    if (question_amt == 'S') or (question_amt == 's') or (question_amt == 'short') or (question_amt == 'Short') or (question_amt == 'SHORT'):
+                        s_length = 1
+                        c = 1
+                    elif (question_amt == 'N') or (question_amt == 'n') or (question_amt == 'normal') or (question_amt == 'Normal') or (question_amt == 'NORMAL'):
+                        n_length = 1
+                        c = 1
+                    else:
+                        print ("I am sorry that input isn't recconginized, please either type 'S' for short or 'N' for normal")
+                elif (u_comfort == 'No') or (u_comfort == 'no') or (u_comfort == 'nO') or (u_comfort == 'NO') or (u_comfort == 'N') or (u_comfort == 'N'):
+                    print ("I am sorry to hear that, I hope that you have a wonderful rest of your day")
+                    exit = 1
+                    break
+                elif (u_comfort == 'Exit') or (u_comfort == 'EXit') or (u_comfort == 'EXIt') or (u_comfort == 'EXIT') or (u_comfort == 'eXit') or (u_comfort == 'eXIt') or (u_comfort == 'eXIT') or (u_comfort == 'ExIT') or (u_comfort == 'ExiT') or (u_comfort == 'exIT') or (u_comfort == 'exiT') or (u_comfort == 'ExiT') or (u_comfort == 'exit'):
+                    print ("I am sorry that you are going so soon, we hope that you will check in again some time soon")
+                    exit = 1
+                    break
+                else: 
+                    print ("I am sorry that input isn't recconginized, please either type 'Yes', 'No', or 'Exit'\n")
+            #Shortened mental health questions start
+            if s_length == 1:
+                #Describes what user is going to input and how long short test will be
+                print ('It is almost time to start the short screening.\n it has xxx number of questions and should take xxx minutes\n')
+                print ("Please answer the questions on a 1 to 5 scale:")
+                print ('1 meaning agreeing the least or it being the least positive')
+                print ('3 meaning neutral ')
+                print ('5 meaning agreeing the most or being the most positive')
+               
+                #How user is feeling 
+                while u_feelings_lock == 0:
+                    u_feelings = str(input("\nHow are you feeling today on a scale from 1 to 5?\n"))
+                    if u_feelings == '1':
+                        print("\nI am sorry that you are feeling that way, I hope that you feel better soon!")
+                        u_feelings_lock = 1
+                    elif u_feelings == '2':
+                        print("\nI am sorry for the way you are feeling, I hope that this will some how help")
+                        u_feelings_lock = 1
+                    elif u_feelings == '3':
+                        print ("\nI hope that this survay will make you day a bit brighter")
+                        u_feelings_lock = 1
+                    elif u_feelings == '4':
+                        print ("\nI'm glad to hear that you are feeling good")
+                        u_feelings_lock = 1
+                    elif u_feelings == '5':
+                        print ("\nI am glad to hear that you are doing great")
+                        u_feelings_lock = 1
+                    elif (u_feelings == 'Exit') or (u_feelings == 'EXit') or (u_feelings == 'EXIt') or (u_feelings == 'EXIT') or (u_feelings == 'eXit') or (u_feelings == 'eXIt') or (u_feelings == 'eXIT') or (u_feelings == 'ExIT') or (u_feelings == 'ExiT') or (u_feelings == 'exIT') or (u_feelings == 'exiT') or (u_feelings == 'ExiT') or (u_feelings == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_feelings.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                        
+                #Is the user in the LGBTQ community 
+                while u_lgbt_lock == 0:
+                    u_lgbt = str(input("\n\nDo you identify with the LGBTQ+ community, 1 being no, 3 being questioning, and 5 being yes\n"))
+                    if u_lgbt == '1':
+                        u_lgbt_lock = 1
+                    elif u_lgbt == '2':
+                        u_lgbt_lock = 1
+                    elif u_lgbt == '3':
+                        u_lgbt_lock = 1
+                        user_identity = 1
+                    elif u_lgbt == '4':
+                        u_lgbt_lock = 1
+                        user_identity = 1
+                    elif u_lgbt == '5':
+                        u_lgbt_lock = 1
+                        user_identity = 1
+                    elif (u_lgbt == 'Exit') or (u_lgbt == 'EXit') or (u_lgbt == 'EXIt') or (u_lgbt == 'EXIT') or (u_lgbt == 'eXit') or (u_lgbt == 'eXIt') or (u_lgbt == 'eXIT') or (u_lgbt == 'ExIT') or (u_lgbt == 'ExiT') or (u_lgbt == 'exIT') or (u_lgbt == 'exiT') or (u_lgbt == 'ExiT') or (u_lgbt == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_lgbt.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                while u_hopeless_lock == 0:
+                    u_hopeless = str(input("\n\nDo you expierence feelings of hopelessness, 1 being no, 3 being somewhat/neutral, 5 being yes\n"))
+                    if u_hopeless == '1':
+                        u_hopeless_lock = 1
+                    elif u_hopeless == '2':
+                        u_hopeless_lock = 1
+                        depression_total = depression_total + 1
+                    elif u_hopeless == '3':
+                        u_hopeless_lock = 1
+                        _depression_total = depression_total + 2
+                    elif u_hopeless == '4':
+                        u_hopeless_lock = 1
+                        depression_total = depression_total + 3
+                    elif u_hopeless == '5':
+                        u_hopeless_lock = 1
+                        depression_total = depression_total + 4
+                    elif (u_hopeless == 'Exit') or (u_hopeless == 'EXIT') or (u_hopeless == 'EXIt') or (u_hopeless == 'EXIT') or (u_hopeless == 'eXit') or (u_hopeless == 'eXIt') or (u_hopeless == 'eXIT') or (u_hopeless == 'ExIT') or (u_hopeless == 'ExiT') or (u_hopeless == 'exIT') or (u_hopeless == 'exiT') or (u_hopeless == 'ExiT') or (u_hopeless == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_hopeless.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                while u_dropped_lock == 0:
+                    u_dropped = str(input("\n\nHave you dropped any of your hobbies or activities you used to like, 1 being no, 3 being somewhat/neutral, 5 being yes\n"))
+                    if u_dropped == '1':
+                        u_dropped_lock = 1
+                    elif u_dropped == '2':
+                        u_dropped_lock = 1
+                        depression_total = depression_total + 1
+                    elif u_dropped == '3':
+                        u_dropped_lock = 1
+                        _depression_total = depression_total + 2
+                    elif u_dropped == '4':
+                        u_dropped_lock = 1
+                        depression_total = depression_total + 3
+                    elif u_dropped == '5':
+                        u_dropped_lock = 1
+                        depression_total = depression_total + 4
+                    elif (u_hopeless == 'Exit') or (u_hopeless == 'EXIT') or (u_hopeless == 'EXIt') or (u_hopeless == 'EXIT') or (u_hopeless == 'eXit') or (u_hopeless == 'eXIt') or (u_hopeless == 'eXIT') or (u_hopeless == 'ExIT') or (u_hopeless == 'ExiT') or (u_hopeless == 'exIT') or (u_hopeless == 'exiT') or (u_hopeless == 'ExiT') or (u_hopeless == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_hopeless.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                while u_failure_lock == 0:
+                    u_failure = str(input("\n\nDo you feel like you are a failure or are not worth anything, 1 being no, 3 being somewhat/neutral, 5 being yes\n"))
+                    if u_failure == '1':
+                        u_failure_lock = 1
+                    elif u_failure == '2':
+                        u_failure_lock = 1
+                        depression_total = depression_total + 1
+                    elif u_failure == '3':
+                        u_failure_lock = 1
+                        _depression_total = depression_total + 2
+                    elif u_failure == '4':
+                        u_failure_lock = 1
+                        depression_total = depression_total + 3
+                    elif u_failure == '5':
+                        u_failure_lock = 1
+                        depression_total = depression_total + 4
+                    elif (u_hopeless == 'Exit') or (u_hopeless == 'EXIT') or (u_hopeless == 'EXIt') or (u_hopeless == 'EXIT') or (u_hopeless == 'eXit') or (u_hopeless == 'eXIt') or (u_hopeless == 'eXIT') or (u_hopeless == 'ExIT') or (u_hopeless == 'ExiT') or (u_hopeless == 'exIT') or (u_hopeless == 'exiT') or (u_hopeless == 'ExiT') or (u_hopeless == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_hopeless.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                while u_sadness_lock == 0:
+                    u_sadness = str(input("\n\nDo you feel sad or unhappy for several days a week, 1 being no, 3 being somewhat/neutral, 5 being yes\n"))
+                    if u_sadness == '1':
+                        u_sadness_lock = 1
+                    elif u_sadness == '2':
+                        u_sadness_lock = 1
+                        depression_total = depression_total + 1
+                    elif u_sadness == '3':
+                        u_sadness_lock = 1
+                        _depression_total = depression_total + 2
+                    elif u_sadness == '4':
+                        u_sadness_lock = 1
+                        depression_total = depression_total + 3
+                    elif u_sadness == '5':
+                        u_sadness_lock = 1
+                        depression_total = depression_total + 4
+                    elif (u_sadness == 'Exit') or (u_sadness == 'EXIT') or (u_sadness == 'EXIt') or (u_sadness == 'EXIT') or (u_sadness == 'eXit') or (u_sadness == 'eXIt') or (u_sadness == 'eXIT') or (u_sadness == 'ExIT') or (u_sadness == 'ExiT') or (u_sadness == 'exIT') or (u_sadness == 'exiT') or (u_sadness == 'ExiT') or (u_sadness == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_sadness.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                while u_pointless_lock == 0:
+                    u_pointless = str(input("\n\nDo you feel that life is pointless for several days a week, 1 being no, 3 being somewhat/neutral, 5 being yes\n"))
+                    if u_pointless == '1':
+                        u_pointless_lock = 1
+                    elif u_pointless == '2':
+                        u_pointless_lock = 1
+                        depression_total = depression_total + 1
+                    elif u_pointless == '3':
+                        u_pointless_lock = 1
+                        depression_total = depression_total + 2
+                    elif u_pointless == '4':
+                        u_pointless_lock = 1
+                        depression_total = depression_total + 3
+                    elif u_pointless == '5':
+                        u_pointless_lock = 1
+                        depression_total = depression_total + 4
+                    elif (u_pointless == 'Exit') or (u_pointless == 'EXIT') or (u_pointless == 'EXIt') or (u_pointless == 'EXIT') or (u_pointless == 'eXit') or (u_pointless == 'eXIt') or (u_pointless == 'eXIT') or (u_pointless == 'ExIT') or (u_pointless == 'ExiT') or (u_pointless == 'exIT') or (u_pointless == 'exiT') or (u_pointless == 'ExiT') or (u_pointless == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_pointless.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                while u_suicidal_lock == 0:
+                    u_suicidal = str(input("\n\nDo you have suicidal thoughts/thoughts of killing yourself, 1 being no, 3 being somewhat/neutral, 5 being yes\n"))
+                    if u_suicidal == '1':
+                        u_suicidal_lock = 1
+                    elif u_suicidal == '2':
+                        u_suicidal_lock = 1
+                        suicidal_thoughts_total = 1
+                    elif u_suicidal == '3':
+                        u_suicidal_lock = 1
+                        suicidal_thoughts_total = 1
+                    elif u_suicidal == '4':
+                        u_suicidal_lock = 1
+                        suicidal_thoughts_total = 1
+                    elif u_suicidal == '5':
+                        u_suicidal_lock = 1
+                        suicidal_thoughts_total = 1
+                    elif (u_suicidal == 'Exit') or (u_suicidal == 'EXIT') or (u_suicidal == 'EXIt') or (u_suicidal == 'EXIT') or (u_suicidal == 'eXit') or (u_suicidal == 'eXIt') or (u_suicidal == 'eXIT') or (u_suicidal == 'ExIT') or (u_suicidal == 'ExiT') or (u_suicidal == 'exIT') or (u_suicidal == 'exiT') or (u_hopeless == 'ExiT') or (u_hopeless == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_suicidal.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                while u_self_hame_lock == 0:
+                    u_self_hame = str(input("\n\nDo you have thoughts of harming yourself, 1 being no, 3 being somewhat/neutral, 5 being yes\n"))
+                    if u_self_hame == '1':
+                        u_self_hame_lock = 1
+                    elif u_self_hame == '2':
+                        u_self_hame_lock = 1
+                        self_harm_thoughts_total = 1
+                    elif u_self_hame == '3':
+                        u_self_hame_lock = 1
+                        self_harm_thoughts_total = 1
+                    elif u_self_hame == '4':
+                        u_self_hame_lock = 1
+                        self_harm_thoughts_total = 1
+                    elif u_self_hame == '5':
+                        u_self_hame_lock = 1
+                        self_harm_thoughts_total = 1
+                    elif (u_self_hame == 'Exit') or (u_self_hame == 'EXIT') or (u_self_hame == 'EXIt') or (u_self_hame == 'EXIT') or (u_self_hame == 'eXit') or (u_self_hame == 'eXIt') or (u_self_hame == 'eXIT') or (u_self_hame == 'ExIT') or (u_self_hame == 'ExiT') or (u_self_hame == 'exIT') or (u_self_hame == 'exiT') or (u_self_hame == 'ExiT') or (u_self_hame == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_self_hame.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                while u_anxiety_lock == 0:
+                    u_anxiety = str(input("\n\nDo you feel anxious about decisions, 1 being no, 3 being somewhat/neutral, 5 being yes\n"))
+                    if u_anxiety == '1':
+                        u_anxiety_lock = 1
+                    elif u_anxiety == '2':
+                        u_anxiety_lock = 1
+                        anxiety_total = anxiety_total + 1
+                    elif u_anxiety == '3':
+                        u_anxiety_lock = 1
+                        anxiety_total = anxiety_total + 2
+                    elif u_anxiety == '4':
+                        u_anxiety_lock = 1
+                        anxiety_total = anxiety_total + 3
+                    elif u_anxiety == '5':
+                        u_anxiety_lock = 1
+                        anxiety_total = anxiety_total + 4
+                    elif (u_anxiety == 'Exit') or (u_anxiety == 'EXIT') or (u_anxiety == 'EXIt') or (u_anxiety == 'EXIT') or (u_anxiety == 'eXit') or (u_anxiety == 'eXIt') or (u_anxiety == 'eXIT') or (u_anxiety == 'ExIT') or (u_anxiety == 'ExiT') or (u_anxiety == 'exIT') or (u_anxiety == 'exiT') or (u_anxiety == 'ExiT') or (u_anxiety == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_anxiety.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                while u_worry_lock == 0:
+                    u_worry = str(input("\n\nDo you worry about most things in life, 1 being no, 3 being somewhat/neutral, 5 being yes\n"))
+                    if u_worry == '1':
+                        u_worry_lock = 1
+                    elif u_worry == '2':
+                        u_worry_lock = 1
+                        anxiety_total = anxiety_total + 1
+                        stress_total = stress_total + 1
+                    elif u_worry == '3':
+                        u_worry_lock = 1
+                        anxiety_total = anxiety_total + 2
+                        stress_total = stress_total + 2
+                    elif u_worry == '4':
+                        u_worry_lock = 1
+                        anxiety_total = anxiety_total + 3
+                        stress_total = stress_total + 3
+                    elif u_worry == '5':
+                        u_worry_lock = 1
+                        anxiety_total = anxiety_total + 4
+                        stress_total = stress_total + 4
+                    elif (u_worry == 'Exit') or (u_lgbt == 'EXIT') or (u_worry == 'EXIt') or (u_worry == 'EXIT') or (u_worry == 'eXit') or (u_worry == 'eXIt') or (u_worry == 'eXIT') or (u_worry == 'ExIT') or (u_worry == 'ExiT') or (u_worry == 'exIT') or (u_worry == 'exiT') or (u_worry == 'ExiT') or (u_worry == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_worry.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                while u_nervous_lock == 0:
+                    u_nervous = str(input("\n\nDo you feel nervous about things you can't control, 1 being no, 3 being somewhat/neutral, 5 being yes\n"))
+                    if u_nervous == '1':
+                        u_nervous_lock = 1
+                    elif u_nervous == '2':
+                        u_nervous_lock = 1
+                        anxiety_total = anxiety_total + 1
+                        stress_total = stress_total + 1
+                    elif u_nervous == '3':
+                        u_nervous_lock = 1
+                        anxiety_total = anxiety_total + 2
+                        stress_total = stress_total + 2
+                    elif u_nervous == '4':
+                        u_nervous_lock = 1
+                        anxiety_total = anxiety_total + 3
+                        stress_total = stress_total + 3
+                    elif u_nervous == '5':
+                        u_nervous_lock = 1
+                        anxiety_total = anxiety_total + 4
+                        stress_total = stress_total + 4
+                    elif (u_nervous == 'Exit') or (u_nervous == 'EXIT') or (u_nervous == 'EXIt') or (u_nervous == 'EXIT') or (u_nervous == 'eXit') or (u_nervous == 'eXIt') or (u_nervous == 'eXIT') or (u_nervous == 'ExIT') or (u_nervous == 'ExiT') or (u_nervous == 'exIT') or (u_nervous == 'exiT') or (u_nervous == 'ExiT') or (u_nervous == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_nervous.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                while u_stress_lock == 0:
+                    u_stress = str(input("\n\nDo you feel overly stressed about events in your life, 1 being no, 3 being somewhat/neutral, 5 being yes\n"))
+                    if u_stress == '1':
+                        u_stress_lock = 1
+                    elif u_stress == '2':
+                        u_stress_lock = 1
+                        anxiety_total = anxiety_total + 1
+                        stress_total = stress_total + 1
+                    elif u_stress == '3':
+                        u_stress_lock = 1
+                        anxiety_total = anxiety_total + 2
+                        stress_total = stress_total + 2
+                    elif u_stress == '4':
+                        u_stress_lock = 1
+                        anxiety_total = anxiety_total + 3
+                        stress_total = stress_total + 3
+                    elif u_stress == '5':
+                        u_stress_lock = 1
+                        anxiety_total = anxiety_total + 4
+                        stress_total = stress_total + 4
+                    elif (u_stress == 'Exit') or (u_stress == 'EXIT') or (u_stress == 'EXIt') or (u_stress == 'EXIT') or (u_stress == 'eXit') or (u_stress == 'eXIt') or (u_stress == 'eXIT') or (u_stress == 'ExIT') or (u_stress == 'ExiT') or (u_stress == 'exIT') or (u_stress == 'exiT') or (u_stress == 'ExiT') or (u_stress == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_stress.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                while u_anxious_lock == 0:
+                    u_anxious = str(input("\n\nDo you feel anxious when you are not in control of what is going on around you, 1 being no, 3 being somewhat/neutral, 5 being yes\n"))
+                    if u_anxious == '1':
+                        u_anxious_lock = 1
+                    elif u_anxious == '2':
+                        u_anxious_lock = 1
+                        anxiety_total = anxiety_total + 1
+                    elif u_anxious == '3':
+                        u_anxious_lock = 1
+                        anxiety_total = anxiety_total + 2
+                    elif u_anxious == '4':
+                        u_anxious_lock = 1
+                        anxiety_total = anxiety_total + 3
+                    elif u_anxious == '5':
+                        u_anxious_lock = 1
+                        anxiety_total = anxiety_total + 4
+                    elif (u_anxious == 'Exit') or (u_anxious == 'EXIT') or (u_anxious == 'EXIt') or (u_anxious == 'EXIT') or (u_anxious == 'eXit') or (u_anxious == 'eXIt') or (u_anxious == 'eXIT') or (u_anxious == 'ExIT') or (u_anxious == 'ExiT') or (u_anxious == 'exIT') or (u_anxious == 'exiT') or (u_anxious == 'ExiT') or (u_anxious == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_anxious.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                while u_unexpected_lock == 0:
+                    u_unexpected = str(input("\n\nDo you feel upset about unexpected things happening, 1 being no, 3 being somewhat/neutral, 5 being yes\n"))
+                    if u_unexpected == '1':
+                        u_unexpected_lock = 1
+                    elif u_unexpected == '2':
+                        u_unexpected_lock = 1
+                        anxiety_total = anxiety_total + 1
+                    elif u_unexpected == '3':
+                        u_unexpected_lock = 1
+                        anxiety_total = anxiety_total + 2
+                    elif u_unexpected == '4':
+                        u_unexpected_lock = 1
+                        anxiety_total = anxiety_total + 3
+                    elif u_unexpected == '5':
+                        u_unexpected_lock = 1
+                        anxiety_total = anxiety_total + 4
+                    elif (u_unexpected == 'Exit') or (u_unexpected == 'EXIT') or (u_unexpected == 'EXIt') or (u_unexpected == 'EXIT') or (u_unexpected == 'eXit') or (u_unexpected == 'eXIt') or (u_unexpected == 'eXIT') or (u_unexpected == 'ExIT') or (u_unexpected == 'ExiT') or (u_unexpected == 'exIT') or (u_unexpected == 'exiT') or (u_unexpected == 'ExiT') or (u_unexpected == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_unexpected.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                while u_substances_lock == 0:
+                    u_substances = str(input("\n\nDo you use substances more then 3 days a week, 1 being no, 3 being somewhat/neutral, 5 being yes\n"))
+                    if u_substances == '1':
+                        u_substances_lock = 1
+                    elif u_substances == '2':
+                        u_substances_lock = 1
+                        substance_use = substance_use + 1
+                    elif u_substances == '3':
+                        u_substances_lock = 1
+                        substance_use = substance_use + 2
+                    elif u_substances == '4':
+                        u_substances_lock = 1
+                        substance_use = substance_use + 3
+                    elif u_substances == '5':
+                        u_substances_lock = 1
+                        substance_use = substance_use + 4
+                    elif (u_substances == 'Exit') or (u_substances == 'EXIT') or (u_substances == 'EXIt') or (u_substances == 'EXIT') or (u_substances == 'eXit') or (u_substances == 'eXIt') or (u_substances == 'eXIT') or (u_substances == 'ExIT') or (u_substances == 'ExiT') or (u_substances == 'exIT') or (u_substances == 'exiT') or (u_substances == 'ExiT') or (u_substances == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_substances.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                while u_substance_prevention_lock == 0:
+                    u_substance_prevention = str(input("\n\nDoes you using substances prevent you from doing actions expected of you, 1 being no, 3 being somewhat/neutral, 5 being yes\n"))
+                    if u_substance_prevention == '1':
+                        u_substance_prevention_lock = 1
+                    elif u_substance_prevention == '2':
+                        u_substance_prevention_lock = 1
+                        substance_use = substance_use + 1
+                    elif u_substance_prevention == '3':
+                        u_substance_prevention_lock = 1
+                        substance_use = substance_use + 2
+                    elif u_substance_prevention == '4':
+                        u_substance_prevention_lock = 1
+                        substance_use = substance_use + 3
+                    elif u_substance_prevention == '5':
+                        u_substance_prevention_lock = 1
+                        substance_use = substance_use + 4
+                    elif (u_substance_prevention == 'Exit') or (u_substance_prevention == 'EXIT') or (u_substance_prevention == 'EXIt') or (u_substance_prevention == 'EXIT') or (u_substance_prevention == 'eXit') or (u_substance_prevention == 'eXIt') or (u_substance_prevention == 'eXIT') or (u_substance_prevention == 'ExIT') or (u_substance_prevention == 'ExiT') or (u_substance_prevention == 'exIT') or (u_substance_prevention == 'exiT') or (u_substance_prevention == 'ExiT') or (u_substance_prevention == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_substance_prevention.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                while u_substance_injury_lock == 0:
+                    u_substance_injury = str(input("\n\nHave you injured someone or yourself due to substances, 1 being no, 3 being somewhat/neutral, 5 being yes\n"))
+                    if u_substance_injury == '1':
+                        u_substance_injury_lock = 1
+                    elif u_substance_injury == '2':
+                        u_substance_injury_lock = 1
+                        substance_use = substance_use + 1
+                    elif u_substance_injury == '3':
+                        u_substance_injury_lock = 1
+                        substance_use = substance_use + 2
+                    elif u_substance_injury == '4':
+                        u_substance_injury_lock = 1
+                        substance_use = substance_use + 3
+                    elif u_substance_injury == '5':
+                        u_substance_injury_lock = 1
+                        substance_use = substance_use + 4
+                    elif (u_substance_injury == 'Exit') or (u_substance_injury == 'EXIT') or (u_substance_injury == 'EXIt') or (u_substance_injury == 'EXIT') or (u_substance_injury == 'eXit') or (u_substance_injury == 'eXIt') or (u_substance_injury == 'eXIT') or (u_substance_injury == 'ExIT') or (u_substance_injury == 'ExiT') or (u_substance_injury == 'exIT') or (u_substance_injury == 'exiT') or (u_substance_injury == 'ExiT') or (u_substance_injury == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_substance_injury.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                while u_substance_hopsital_lock == 0:
+                    u_substance_hopsital = str(input("\n\nHave you been hospitalized because of substance use, 1 being no, 3 being somewhat/neutral, 5 being yes\n"))
+                    if u_substance_hopsital == '1':
+                        u_substance_hopsital_lock = 1
+                    elif u_substance_hopsital == '2':
+                        u_substance_hopsital_lock = 1
+                        substance_use = substance_use + 1
+                    elif u_substance_hopsital == '3':
+                        u_substance_hopsital_lock = 1
+                        substance_use = substance_use + 2
+                    elif u_substance_hopsital == '4':
+                        u_substance_hopsital_lock = 1
+                        substance_use = substance_use + 3
+                    elif u_substance_hopsital == '5':
+                        u_substance_hopsital_lock = 1
+                        substance_use = substance_use + 4
+                    elif (u_substance_hopsital == 'Exit') or (u_substance_hopsital == 'EXIT') or (u_substance_hopsital == 'EXIt') or (u_substance_hopsital == 'EXIT') or (u_substance_hopsital == 'eXit') or (u_substance_hopsital == 'eXIt') or (u_substance_hopsital == 'eXIT') or (u_substance_hopsital == 'ExIT') or (u_substance_hopsital == 'ExiT') or (u_substance_hopsital == 'exIT') or (u_substance_hopsital == 'exiT') or (u_substance_hopsital == 'ExiT') or (u_substance_hopsital == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_substance_hopsital.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+                    while u_substance_cope_lock == 0:
+                        u_substance_cope = str(input("\n\nDo you use substances to cope, 3 being somewhat/neutral, 5 being yes\n"))
+                        if u_substance_cope == '1':
+                            u_substance_cope_lock = 1
+                        elif u_substance_cope == '2':
+                            u_substance_cope_lock = 1
+                            substance_use = substance_use + 1
+                        elif u_substance_cope == '3':
+                            u_substance_cope_lock = 1
+                            substance_use = substance_use + 2
+                        elif u_substance_cope == '4':
+                            u_substance_cope_lock = 1
+                            substance_use = substance_use + 3
+                        elif u_substance_cope == '5':
+                            u_substance_cope_lock = 1
+                            substance_use = substance_use + 4
+                        elif (u_substance_cope == 'Exit') or (u_substance_cope == 'EXIT') or (u_substance_cope == 'EXIt') or (u_substance_cope == 'EXIT') or (u_substance_cope == 'eXit') or (u_substance_cope == 'eXIt') or (u_substance_cope == 'eXIT') or (u_substance_cope == 'ExIT') or (u_substance_cope == 'ExiT') or (u_substance_cope == 'exIT') or (u_substance_cope == 'exiT') or (u_substance_cope == 'ExiT') or (u_substance_cope == 'exit'):
+                            print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                            exit = 1
+                            break
+                        elif u_substance_cope.isalpha():
+                            print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                        else: 
+                            print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+            if n_length == 1:
+                #Describes what user is going to input and how long normal test will be
+                print ('It is almost time to start the normal screening.\n it has xxx number of questions and should take xxx minutes\n')
+                print ("Please answer the questions on a 1 to 5 scale:")
+                print ('1 meaning agreeing the least or it being the least positive')
+                print ('3 meaning neutral ')
+                print ('5 meaning agreeing the most or being the most positive')       
+                
+                #How user is feeling 
+                while u_feelings_lock == 0:
+                    if u_feelings == 1:
+                        print("\nI am sorry that you are feeling that way, I hope that you feel better soon!")
+                        u_feelings_lock = 1
+                    elif u_feelings == 2:
+                        print("\nI am sorry for the way you are feeling, I hope that this will some how help")
+                        u_feelings_lock = 1
+                    elif u_feelings == 3:
+                        print ("\nI hope that this survay will make you day a bit brighter")
+                        u_feelings_lock = 1
+                    elif u_feelings == 4:
+                        print ("\nI'm glad to hear that you are feeling good")
+                        u_feelings_lock = 1
+                    elif u_feelings == 5:
+                        print ("\nI am glad to hear that you are doing great")
+                        u_feelings_lock = 1
+                    elif (u_feelings == 'Exit') or (u_feelings == 'EXit') or (u_feelings == 'EXIt') or (u_feelings == 'EXIT') or (u_feelings == 'eXit') or (u_feelings == 'eXIt') or (u_feelings == 'eXIT') or (u_feelings == 'ExIT') or (u_feelings == 'ExiT') or (u_feelings == 'exIT') or (u_feelings == 'exiT') or (u_feelings == 'ExiT') or (u_feelings == 'exit'):
+                        print ("\nI am sorry that you are going so soon, we hope that you will check in again some time soon")
+                        exit = 1
+                        break
+                    elif u_feelings.isalpha():
+                        print("\nI am sorry that isn't recconginized, please use a 1-5 scale to rate how you feel")
+                    else: 
+                        print ("\nI hope that you enjoy taking this quiz, please remember to answer with numbers between 1 and 5.")
+            
+            #Depression
+            print('You scored ' + str(depression_total) + ' out of 20 for the depression related questions')
+            #Anxiety
+            print('You scored ' +str(anxiety_total)+ ' out of 24 for the anxiety related questions')
+            #Stress
+            print('You scored ' + str(stress_total)+' out of 12 for the stress related questions')
+            #Substance Use
+            print('You scored ' +str(substance_use)+ ' out of 20 for the substance use related questions')
+            #Suicidal thoughts
+            print('You scored ' + str(suicidal_thoughts_total) + ' out of 1 for the suicide related related questions') 
+            #Self harm
+            print('You scored ' + str(self_harm_thoughts_total)+' out of 1 for the self harm related questions')
+            #User identity 
+            print('You scored ' +str(user_identity)+ ' out of 1 for the LGBTQ+ related questions')
+            
+            check = 0
+            while check == 0:
+                clinic_check = str(input('\nWould you like to see any, mental health clinics today\n'))
+                if (clinic_check == 'Yes') or (clinic_check == 'yes') or (clinic_check == 'YES') or (clinic_check == 'Y') or (clinic_check == 'y'):
+                    check = 0
+                elif (clinic_check == 'No') or (clinic_check == 'no') or (clinic_check == 'NO') or (clinic_check == 'Yes') or (clinic_check == 'Yes'):
+                    print ('Ok, we will move on')
+                    clinic_lock = 1
+                else:
+                    print("I am sorry that command isn't recconginzed please type yes or no")
+                
+                while clinic_lock == 0:
+                    clinic_raw = input("\nHow many clinics would you like to see? Please answer with a number: \n")
+                    if clinic_raw.isalpha():
+                        clinic_txt = str(clinic_raw)
+                        x = 1
+                    if clinic_raw.isdigit():
+                        clinic_num = int(clinic_raw) 
+                        z = 1
+                    if x == 1:
+                        print ("I am sorry that isn't reconginzed, please type in numbres such as 1 or 10")
+                        x = 0
+                    if z == 1:
+                        if (clinic_num < 50):
+                            spoon = ['x', 'xx', 'xxx']
+                            for i in range (clinic_num):
+                                print("Clinic:",spoon[i],)
+                            clinic_lock = 1
+                        elif (clinic_num > 50):
+                            print ("I am sorry that is too large, please select a smaller amount")
+            
+                psyc_check = str(input('Would you like to see any psychatric clinics today\n'))
+                if (psyc_check == 'Yes') or (psyc_check == 'yes') or (psyc_check == 'YES') or (psyc_check == 'Y') or (psyc_check == 'y'):
+                    check = 0
+                elif (clinic_check == 'No') or (psyc_check == 'no') or (psyc_check == 'NO') or (psyc_check == 'Yes') or (psyc_check == 'Yes'):
+                    print ('Ok, we will move on')
+                    psyc_check_lock = 1
+                else:
+                    print("I am sorry that command isn't recconginzed please type yes or no")
+                
+                while psyc_check_lock == 0:
+                    clinic_raw = input("\nHow many clinics would you like to see? Please answer with a number: \n")
+                    if clinic_raw.isalpha():
+                        clinic_txt = str(clinic_raw)
+                        x = 1
+                    if clinic_raw.isdigit():
+                        clinic_num = int(clinic_raw) 
+                        z = 1
+                    if x == 1:
+                        print ("I am sorry that isn't reconginzed, please type in numbres such as 1 or 10")
+                        x = 0
+                    if z == 1:
+                        if (clinic_num < 50):
+                            spoon = ['x', 'xx', 'xxx']
+                            for i in range (clinic_num):
+                                print("Clinic:",spoon[i],)
+                            psyc_check_lock = 1
+                        elif (clinic_num > 50):
+                            print ("I am sorry that is too large, please select a smaller amount")
+                if user_identity == 1:
+                    lgbtq_check = str(input('Would you like to see any LGBTQ+ groups today\n'))
+                    if (lgbtq_check == 'Yes') or (lgbtq_check == 'yes') or (lgbtq_check == 'YES') or (lgbtq_check == 'Y') or (lgbtq_check == 'y'):
+                        clinic_lock = 1
+                    elif (lgbtq_check == 'No') or (lgbtq_check == 'no') or (lgbtq_check == 'NO') or (lgbtq_check == 'Yes') or (lgbtq_check == 'Yes'):
+                        print ('Ok, we can move on')
+                        psyc_check_lock = 1
+                    else:
+                        print("I am sorry that command isn't recconginzed please type yes or no")
+                    
+                    while user_lgbtq_lock == 0:
+                        clinic_raw = input("\nHow many clinics would you like to see? Please answer with a number: \n")
+                        if clinic_raw.isalpha():
+                            clinic_txt = str(clinic_raw)
+                            x = 1
+                        if clinic_raw.isdigit():
+                            clinic_num = int(clinic_raw) 
+                            z = 1
+                        if x == 1:
+                            print ("I am sorry that isn't reconginzed, please type in numbres such as 1 or 10")
+                            x = 0
+                        if z == 1:
+                            if (clinic_num < 50):
+                                spoon = ['x', 'xx', 'xxx']
+                                for i in range (clinic_num):
+                                    print("Clinic:",spoon[i],)
+                                user_lgbtq_lock = 1
+                            elif (clinic_num > 50):
+                                print ("I am sorry that is too large, please select a smaller amount")
+                if (substance_use > 5):
+                    substance_clinic_check = str(input('Would you like to see any rehab/support groups today\n'))
+                    if (substance_clinic_check == 'Yes') or (substance_clinic_check == 'yes') or (substance_clinic_check == 'YES') or (substance_clinic_check == 'Y') or (substance_clinic_check == 'y'):
+                        clinic_lock = 1
+                    elif (substance_clinic_check == 'No') or (substance_clinic_check == 'no') or (substance_clinic_check == 'NO') or (substance_clinic_check == 'Yes') or (substance_clinic_check == 'Yes'):
+                        print ('Ok, we will check you out, have a wonderful day')
+                        exit = 1
+                        substance_use_lock = 1
+                    else:
+                        print("I am sorry that command isn't recconginzed please type yes or no")
+                    
+                    while substance_use_lock == 0:
+                        clinic_raw = input("\nHow many clinics would you like to see? Please answer with a number: \n")
+                        if clinic_raw.isalpha():
+                            clinic_txt = str(clinic_raw)
+                            x = 1
+                        if clinic_raw.isdigit():
+                            clinic_num = int(clinic_raw) 
+                            z = 1
+                        if x == 1:
+                            print ("I am sorry that isn't reconginzed, please type in numbres such as 1 or 10")
+                            x = 0
+                        if z == 1:
+                            if (clinic_num < 50):
+                                spoon = ['x', 'xx', 'xxx']
+                                for i in range (clinic_num):
+                                    print("Clinic:",spoon[i],)
+                                substance_use_lock = 1
+                            elif (clinic_num > 50):
+                                print ("I am sorry that is too large, please select a smaller amount")
+            
+
+
+
+
+#        ,~~.
+#  ,    (  - )>
+#   )`~~'   (
+#  (  .__)   )
+#   `-.____,'
+    #If user types No/Exit program will end
+    elif (user_ok == 'No') or (user_ok == 'no') or (user_ok == 'nO') or (user_ok == 'NO') or (user_ok == 'N') or (user_ok == 'N'):
+        print ("I am sorry that you are going so soon, we hope that you will check in again some time soon")
+        exit = 1
+        x = 0
+    elif (user_ok == 'Exit') or (user_ok == 'EXit') or (user_ok == 'EXIt') or (user_ok == 'EXIT') or (user_ok == 'eXit') or (user_ok == 'eXIt') or (user_ok == 'eXIT') or (user_ok == 'ExIT') or (user_ok == 'ExiT') or (user_ok == 'exIT') or (user_ok == 'exiT') or (user_ok == 'ExiT') or (user_ok == 'exit'):
+        print ("I am sorry that you are going so soon, we hope that you will check in again some time soon")
+        exit = 1
+        x = 0
+    else: 
+        print ("I am sorry that command isn't recconginized, please type either 'Yes', 'No', or 'Exit'")
+
+
+
+
+#        ,~~.
+#  ,    (  - )>
+#   )`~~'   (
+#  (  .__)   )
+#   `-.____,'
+# Quinn Spurgeon aka Moss
